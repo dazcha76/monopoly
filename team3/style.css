@@ -1,5 +1,6 @@
 body {
     position: relative;
+    box-sizing: border-box;
 }
 
 .container{
@@ -17,9 +18,6 @@ body {
     width:70%;
     background-color: lightpink;
 
-    display:flex;
-    align-items: flex-end;
-    flex-direction: row-reverse;
 }
 
 .dice_area {
@@ -31,10 +29,10 @@ body {
 }
 
 .bottom {
-    height: 10%;
+    height: 100%;
     width: 100%;
     display:flex;
-    /*align-items: flex-end;*/
+    align-items: flex-end;
     flex-direction: row-reverse;
 }
 
@@ -50,10 +48,11 @@ body {
     align-items: flex-end;
     flex-direction: row-reverse;
 }*/
+.small{}
 
-.big, .small {
+.big{
     height: 100%;
-    width: 10%;
+    width: 100%;
     background-color: lightgreen;
     border: 1px solid green;
     box-sizing: border-box;
@@ -78,6 +77,45 @@ body {
     transform: translate(-50%, -50%);*/
 }
 
+.top_game_board,.bottom_game_board{
+    height:15%;
+    width:100%;
+    background-color: plum;
+}
+
+.bottom_game_board{
+    width:100%;
+    display:flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;}
+
+.corner{
+    height:100%;
+    width:20%;
+}
+
+.properties{
+    height:100%;
+    width: 11.11%;
+    background-color:pink;
+    display:inline-block;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.bottom_row_properties{
+    height:100%;
+    width:60%;
+    background-color:lightblue;
+    font-size:0;
+}
+
+
+.middle_game_board{
+    height:70%;
+    width:100%;
+    background-color: mediumpurple;
+}
 
 /*-------------- players--------------*/
 .players{
