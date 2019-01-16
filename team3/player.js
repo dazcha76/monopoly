@@ -1,6 +1,8 @@
 class Player{
-    constructor(balance){
-        this.balance=balance;
+    constructor(name, character){
+        this.balance=1500;
+        this.playerName = name;
+        this.playerCharacter = character;
     }
 
     addMoney(deposit){

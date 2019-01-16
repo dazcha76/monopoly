@@ -9,6 +9,7 @@ function initGame(){
 function clickHandlers() {
 	console.log("click handlers");
 	$(".dice_area").click(rollDice);
+  $(".start_game").click()
 }
 
 function initPlayer(){
