@@ -3,6 +3,8 @@ $(document).ready(initGame);
 var diceValue=null;
 var diceRolled=false;
 
+
+
 function initGame(){
     console.log('I started!');
     initPlayer();
@@ -14,6 +16,12 @@ function clickHandlers() {
 	$(".dice_area").click(rollDice);
 
 	$(".dice_area").click(diceRolledCheck);
+
+    $('.start_game').click(function(){
+        var newGame = new Game();
+        newGame.createPlayer();
+        newGame.displayPlayer();
+    });
 }
 
 function initPlayer(){
