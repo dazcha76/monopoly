@@ -1,7 +1,7 @@
 .container{
     display:flex;
     flex-direction:row;
-    few-wrap:wrap;
+    flex-wrap:wrap;
     justify-content: space-around;
     height:100vh;
 }
