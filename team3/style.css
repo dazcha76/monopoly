@@ -10,6 +10,8 @@ body {
     height:100vh;
 }
 
+/*-------------- GAMEBOARD --------------*/
+
 .game_board_container{
     height: 100%;
     width:70%;
@@ -19,17 +21,42 @@ body {
     align-items: flex-end;
     flex-direction: row-reverse;
 }
+
+.bottom {
+    height: 10%;
+    width: 100%;
+    display:flex;
+    /*align-items: flex-end;*/
+    flex-direction: row-reverse;
+}
+
+/*.big {
+    height: 100%;
+    width: 10%;
+    background-color: green;
+}
+
+.small_spaces {
+
+    display:flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+}*/
+
+.big, .small {
+    height: 100%;
+    width: 10%;
+    background-color: lightgreen;
+    border: 1px solid green;
+    box-sizing: border-box;
+}
+
+/*-------------- GAMEBOARD --------------*/
+
 .players_container{
     height:100%;
     width:20%;
     background-color:lightskyblue;
-}
-
-.go, .one {
-    height: 10%;
-    width: 10%;
-    background-color: lightgreen;
-    border: 1px solid green;
 }
 
 .player {
