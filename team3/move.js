@@ -5,15 +5,18 @@ class Move {
     // this.position = position;
     // this.dice_roll = dice_roll;
     this.position = 0;
-    this.dice_roll = 1;
+    //this.dice_roll = 1;
 
     this.board_array = ['go', 'one'];
   }
 
-  move_player(){
+  move_player(diceRoll){
+    this.dice_roll=diceRoll;
     this.position += this.dice_roll;
     $('.player').appendTo('.one');
+
   }
+
 }
 
 var x = new Move();

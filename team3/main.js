@@ -1,5 +1,8 @@
 $(document).ready(initGame);
 
+var diceValue=null;
+var diceRolled=false;
+
 function initGame(){
     console.log('I started!');
     initPlayer();
@@ -9,6 +12,7 @@ function initGame(){
 function clickHandlers() {
 	console.log("click handlers");
 	$(".dice_area").click(rollDice);
+	$(".dice_area").click(diceRolledCheck);
 }
 
 function initPlayer(){
@@ -17,6 +21,18 @@ function initPlayer(){
 
 function rollDice() {
 	console.log("rolling dice!");
-	var diceValue = Math.floor((Math.random() * 1) + 1);
-	$(".dice_area").text(diceValue);
+
+	if(diceRolled===false){
+        diceValue = Math.floor((Math.random() * 1) + 1);
+        $(".dice_area").text(diceValue);
+        diceRolled=true;
+	}
+	return diceValue;
+}
+
+function diceRolledCheck(){
+    if(diceRolled===true){
+        x.move_player(diceValue);
+        diceRolled=false;
+    }
 }
