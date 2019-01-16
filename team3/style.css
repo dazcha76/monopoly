@@ -1,0 +1,21 @@
+.container{
+    display:flex;
+    flex-direction:row;
+    few-wrap:wrap;
+    justify-content: space-around;
+    height:100vh;
+}
+
+
+
+
+.game_board_container{
+    height: 100%;
+    width:70%;
+    background-color: lightpink;
+}
+.players_container{
+    height:100%;
+    width:20%;
+    background-color:lightskyblue;
+}
