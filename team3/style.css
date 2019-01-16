@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 .container{
     display:flex;
     flex-direction:row;
@@ -6,16 +10,35 @@
     height:100vh;
 }
 
-
-
-
 .game_board_container{
     height: 100%;
     width:70%;
     background-color: lightpink;
+
+    display:flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
 }
 .players_container{
     height:100%;
     width:20%;
     background-color:lightskyblue;
+}
+
+.go, .one {
+    height: 10%;
+    width: 10%;
+    background-color: lightgreen;
+    border: 1px solid green;
+}
+
+.player {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    /*position: absolute;*/
+    background-color: blue;
+   /* top: 95%;
+    left: 69%;
+    transform: translate(-50%, -50%);*/
 }
