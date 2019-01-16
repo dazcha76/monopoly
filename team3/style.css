@@ -22,6 +22,14 @@ body {
     flex-direction: row-reverse;
 }
 
+.dice_area {
+    height: 500px;
+    width: 200px;
+    background-color: royalblue;
+    color: white;
+    border: 1px solid white;
+}
+
 .bottom {
     height: 10%;
     width: 100%;
