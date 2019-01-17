@@ -1,4 +1,4 @@
-var chance = [
+var  landroval = [
   'Advance to the nearest steed. If unowned, you may buy it from the bank. If owned, pay owner twice the rental to which they are otherwise entited.',
   'Advance to the nearest steed. If unowned, you may buy it from the bank. If owned, pay owner twice the rental to which they are otherwise entited.',
   'Advance to the nearest staff. If unowned, you may buy it from the bank. If owned, throw dice and pay owner ten times the amount thrown.',

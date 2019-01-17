@@ -1,6 +1,13 @@
+@font-face {
+    font-family: 'LOTR';
+    src: url(RINGM___.ttf);
+} 
+
 body {
+    margin: 0;
     position: relative;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .container{
@@ -9,6 +16,69 @@ body {
     flex-wrap:wrap;
     justify-content: space-around;
     height:100vh;
+}
+
+/*-------------- LANDING PAGE --------------*/
+
+.welcome_page {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    color: gold;
+    font-family: 'LOTR';
+    font-size: 2vw;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.select_player {
+    height: 35%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+
+.character {
+    height: 20vh;
+    width: 10vw;
+    border-radius: 50%;
+    border: 5px solid gold;
+}
+
+.start_game {
+    height: 7%;
+    width: 13%;
+    background: url(images/gold1.jpg);
+    font-size: 2vw;
+    font-family: 'LOTR';
+    display: block;
+    margin: 0 auto;
+    border: none;
+}
+
+h1, h3 {
+    background: url(images/gold.jpg);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
+h1 {
+    font-size: 7vw;
+    margin: 0.4em 0 1em 0;
+}
+
+h3 {
+    font-size: 3vw;
+    margin-bottom: 1.5em;
 }
 
 /*-------------- GAMEBOARD --------------*/
@@ -58,23 +128,17 @@ body {
     box-sizing: border-box;
 }
 
-/*-------------- GAMEBOARD --------------*/
-
 .players_container{
-    height:100%;
+    height:98%;
     width:20%;
-    background-color:lightskyblue;
+    border: 5px solid gold;
 }
 
-.player {
+.player1 {
     height: 50px;
     width: 50px;
     border-radius: 25px;
-    /*position: absolute;*/
-    background-color: blue;
-   /* top: 95%;
-    left: 69%;
-    transform: translate(-50%, -50%);*/
+    background-size: cover;
 }
 
 .top_game_board,.bottom_game_board{
@@ -133,26 +197,49 @@ body {
     background-color: mediumpurple;
 }
 
-/*-------------- players--------------*/
+/*-------------- PLAYERS --------------*/
+
 .players{
     height:40%;
     width:80%;
-    background-color:blanchedalmond;
     margin: 5% auto;
     text-align: center;
+    border: 5px solid gold;
+    font-family: 'LOTR';
 }
 
-
 .player_name{
-    height:20%;
+    height:15%;
     width:100%;
     font-size: 150%;
-    background-color: sandybrown;
+    background-color: gold;
 }
 
 .player_balance{
     height:60%;
     width:100%;
     font-size: 120%;
+}
+
+.player_character {
+    height: 15vh;
+    width: 7.5vw;
+    border-radius: 50%;
+    border: 5px solid gold;
+}
+
+.roll_dice, .end_turn {
+    height: 9%;
+    width: 35%;
+    background: url(images/gold1.jpg);
+    font-size: 1.3vw;
+    font-family: 'LOTR';
+    font-weight: 900;
+    margin: 0 auto;
+    border: none;
+}
+
+.roll_dice {
+    margin-right: 5%;
 }
 
