@@ -16,6 +16,7 @@ class Game {
     $('.player_name').text(this.playerCharacter);
     $('.player_character').text(this.playerCharacter);
     $('.player_balance').text(this.initialBalance);
+    //this.allPlayers[this.playerName].balance
   }
 }
 

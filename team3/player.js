@@ -28,13 +28,14 @@ class Player{
         var buttonClass = $('.roll_dice').attr('class');
         var player = buttonClass.substring(10);
         var currentPosition = newGame.allPlayers[player].player_position;
-        var tempCurrentPosition = currentPosition
+        var tempCurrentPosition = currentPosition;
         currentPosition += dice_roll;
         if (currentPosition > 39) {
             var positionDifference = 39 - tempCurrentPosition;
             var newPosition = dice_roll - positionDifference - 1;
             newGame.allPlayers[player].player_position = 0;
             currentPosition = newPosition;
+            newGame.allPlayers[player].addMoney(200);
         }
         newGame.allPlayers[player].player_position = currentPosition;
         $('.player1').appendTo('.'+ currentPosition);
@@ -44,6 +45,7 @@ class Player{
 
     addMoney(deposit){
         this.balance+=deposit;
+        $(".player_balance").text(this.balance);
         return this.balance;
     }
 
@@ -52,6 +54,7 @@ class Player{
             return this.balance;
         }
         this.balance-=withdraw;
+        $(".player_balance").text(this.balance);
         return this.balance;
     }
 
