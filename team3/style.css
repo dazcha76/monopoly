@@ -375,6 +375,12 @@ h3 {
     transform: rotate(90deg);
 }*/
 
+.hoverDiv {
+    height: 20%;
+    width: 10%;
+    background-color: red;
+}
+
 /*-------------- players--------------*/
 
 .players{
