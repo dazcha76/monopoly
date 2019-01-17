@@ -393,6 +393,15 @@ h3 {
     transform: rotate(90deg);
 }*/
 
+.property_info {
+    height: 50%;
+    width: 100%;
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    left: 30%;
+}
+
 /*-------------- players--------------*/
 
 .players{
