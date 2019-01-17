@@ -20,13 +20,26 @@ class Player{
     }
 
     move_player(){
-        var dice_roll = Math.floor((Math.random() * 1)+1);
+
+        var dice_one=Math.floor((Math.random() * 6)+1);
+        var dice_two=Math.floor((Math.random() * 6)+1);
+
+        var dice_roll = dice_one +dice_two;
         var buttonClass = $('.roll_dice').attr('class');
         var player = buttonClass.substring(10);
         var currentPosition = newGame.allPlayers[player].player_position;
+        var tempCurrentPosition = currentPosition
         currentPosition += dice_roll;
+        if (currentPosition > 39) {
+            var positionDifference = 39 - tempCurrentPosition;
+            var newPosition = dice_roll - positionDifference - 1;
+            newGame.allPlayers[player].player_position = 0;
+            currentPosition = newPosition;
+        }
         newGame.allPlayers[player].player_position = currentPosition;
         $('.player1').appendTo('.'+ currentPosition);
+        $('.dice_one').text(dice_one);
+        $('.dice_two').text(dice_two);
     }
 
     addMoney(deposit){
