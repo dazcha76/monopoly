@@ -16,7 +16,7 @@ body {
     flex-wrap:wrap;
     justify-content: space-around;
     height:100vh;
-    width:70%;
+    width:90%;
 }
 
 /*-------------- LANDING PAGE --------------*/
@@ -151,6 +151,12 @@ h3 {
     background-color: plum;
 }
 
+.middle_middle_board{
+    background-image:url(properties/background.png);
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
 .bottom_game_board, .top_game_board {
     width:100%;
     display:flex;
