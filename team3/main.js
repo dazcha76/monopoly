@@ -16,6 +16,7 @@ function clickHandlers() {
       newGame.createPlayer();
       newGame.displayPlayer();
       $('.welcome_page').addClass('hidden');
+      $('.buy').hover(displayPropertyInfo);
   });
 
   $('.character').click(selectCharacter);
@@ -23,4 +24,16 @@ function clickHandlers() {
 
 function selectCharacter(){
   character = $(this).attr('id');
+}
+
+function displayPropertyInfo(){
+  var thisCard = $(this).attr('class');
+  var thisPosition = parseInt(thisCard);
+  var propertyInfo = properties[thisPosition];
+  var details;
+
+  for(details in propertyInfo){
+    var detail = $('<p>').text(details + ": " + propertyInfo[details]);
+    $('.property_info').append(detail);
+  }
 }

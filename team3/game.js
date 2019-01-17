@@ -17,10 +17,6 @@ class Game {
     $('.player_character').text(this.playerCharacter);
     $('.player_balance').text(this.initialBalance);
   }
-
-  displayPropertyInfo(){
-    
-  }
 }
 
 
