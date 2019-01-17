@@ -435,7 +435,7 @@ h3 {
     border: 5px solid gold;
 }
 
-.roll_dice, .end_turn {
+.roll_dice, .end_turn, .buy_prop {
     height: 9%;
     width: 35%;
     background: url(images/gold1.jpg);
