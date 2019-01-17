@@ -3,18 +3,38 @@ class Player{
         this.balance=1500;
         this.playerName = name;
         this.playerCharacter = character;
-        this.position=0;
-    }
-    move_player(diceRoll){
-        this.dice_roll=diceRoll;
-        this.position += this.dice_roll;
-        console.log(this.position);
-        $('.player').appendTo('.'+this.position);
+        this.player_position=0;
+
+        this.createPlayerCards();
     }
 
-    rollDice() {
-        var roll = 3;
-        this.move_player(roll);
+    createPlayerCards(){
+        var player_container = $('<div>').addClass('players');
+        var player_name = $('<div>').addClass('player_name');
+        var player_character = $('<div>').addClass('player_character');
+        var player_balance = $('<div>').addClass('player_balance');
+        var roll_button = $('<button>').text("ROLL").addClass(`roll_dice ${this.playerName}`).click(this.move_player);
+        var end_button = $('<button>').text("END").addClass('end_turn');
+
+        player_container.append(player_name, player_character, player_balance, roll_button, end_button);
+
+        $('.players_container').append(player_container)
+
+    }
+
+    move_player(){
+
+        var dice_roll = Math.floor((Math.random() * 1)+1);
+
+        var buttonClass = $('.roll_dice').attr('class');
+        var player = buttonClass.substring(10);
+
+        var currentPosition = newGame.allPlayers[player].player_position;
+
+        currentPosition += dice_roll;
+
+        newGame.allPlayers[player].player_position = currentPosition;
+        $('.player').appendTo('.'+ currentPosition);
     }
 
     addMoney(deposit){
@@ -48,4 +68,4 @@ class Player{
     removeUtilities(){}
     checkUtilities(){}
 }
-var sky = new Player('sky', 'frodo');
+// var sky = new Player('sky', 'frodo');

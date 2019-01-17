@@ -16,6 +16,7 @@ class Game {
     $('.player_name').text(this.playerName);
     $('.player_character').text(this.playerCharacter);
     $('.player_balance').text(this.initialBalance);
-    }
+  }
 }
+
 
