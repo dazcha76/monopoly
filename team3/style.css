@@ -9,23 +9,27 @@ body {
     flex-wrap:wrap;
     justify-content: space-around;
     height:100vh;
+    width:70%;
 }
 
 /*-------------- GAMEBOARD --------------*/
 
 .game_board_container{
     height: 100%;
-    width:70%;
+    width:100%;
     background-color: lightpink;
 
 }
 
 .dice_area {
-    height: 500px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
     background-color: royalblue;
     color: white;
     border: 1px solid white;
+    position: relative;
+    top: 100px;
+    left: 200px;
 }
 
 .bottom {
@@ -83,32 +87,51 @@ body {
     background-color: plum;
 }
 
-.bottom_game_board{
+.bottom_game_board, .top_game_board {
     width:100%;
     display:flex;
     align-items: flex-end;
-    flex-direction: row-reverse;}
+    flex-direction: row-reverse;
+}
 
 .corner{
     height:100%;
     width:20%;
 }
 
-.properties{
-    height:100%;
-    width: 11.11%;
-    background-color:pink;
-    display:inline-block;
+.top_row_properties > .properties, .bottom_row_properties > .properties{
+    height: 100%;
+    width: 11.11%; 
+    background-color: pink;
+    display: inline-block;
     border: 1px solid black;
     box-sizing: border-box;
+    text-align: center;
 }
 
-.bottom_row_properties{
+.left_row_properties > .properties, .right_row_properties > .properties{
+    height: 11.11%;
+    width: 100%; 
+    background-color: pink;
+    border: 1px solid black;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.bottom_row_properties, .top_row_properties {
     height:100%;
     width:60%;
     background-color:lightblue;
     display: flex;
     /*font-size:0;*/
+}
+
+.top_row_properties {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .color_bar,.text_bar {
@@ -123,15 +146,79 @@ body {
     background-color: #66afe9;
 }
 
+.color_bar.violet{
+    background-color: violet;
+}
+
+.color_bar.orange{
+    background-color: orange;
+}
+
+.color_bar.red{
+    background-color: red;
+}
+
+.color_bar.yellow{
+    background-color: yellow;
+}
+
+.color_bar.green{
+    background-color: green;
+}
+
+.color_bar.blue{
+    background-color: blue;
+}
+
 /*.property_title{*/
     /*font-size: 1rem;*/
 /*}*/
 
 .middle_game_board{
-    height:70%;
-    width:100%;
+    height: 70%;
+    width: 100%;
+    display: flex;
     background-color: mediumpurple;
 }
+
+.middle_left_board, .middle_right_board {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lime;
+}
+
+.middle_middle_board {
+    height: 100%;
+    width: 60%;
+    display: inline-flex;
+    border: 1px solid yellow;
+}
+
+.left_row_properties, .right_row_properties {
+    height: 100%;
+    width: 100%;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+}
+
+/*.left_row_properties > .properties{
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}*/
+
+/*.left_row_properties {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}*/
 
 /*-------------- players--------------*/
 .players{
