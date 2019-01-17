@@ -2,12 +2,11 @@ $(document).ready(initGame);
 
 var diceValue=null;
 var diceRolled=false;
-
-
+var newGame = null;
+var player = null;
 
 function initGame(){
     console.log('I started!');
-    initPlayer();
     clickHandlers();
 }
 
@@ -18,21 +17,15 @@ function clickHandlers() {
 	$(".dice_area").click(diceRolledCheck);
 
     $('.start_game').click(function(){
-        var newGame = new Game();
+        newGame = new Game();
         newGame.createPlayer();
         newGame.displayPlayer();
     });
 }
 
-function initPlayer(){
-    console.log('init player');
-}
-
 function rollDice() {
-	console.log("rolling dice!");
-
 	if(diceRolled===false){
-        diceValue = Math.floor((Math.random() * 1) + 1);
+        diceValue = Math.floor((Math.random() * 1)+1);
         $(".dice_area").text(diceValue);
         diceRolled=true;
 	}
@@ -41,7 +34,7 @@ function rollDice() {
 
 function diceRolledCheck(){
     if(diceRolled===true){
-        x.move_player(diceValue);
+        sky.move_player(diceValue);
         diceRolled=false;
     }
 }
