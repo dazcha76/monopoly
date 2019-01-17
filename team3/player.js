@@ -10,14 +10,17 @@ class Player{
 
     createPlayerCard(){
         var player_container = $('<div>').addClass('players');
-        var player_name = $('<div>').addClass('player_name');
+        var player_name = $('<div>').addClass('player_name').attr('id', this.playerName).text(this.playerName);
         var player_balance = $('<div>').addClass('player_balance');
         var roll_button = $('<button>').text("Roll").addClass(`roll_dice ${this.playerCharacter}`).click(this.move_player);
         var buy_button = $('<button>').text("Buy").addClass(`buy_prop ${this.playerCharacter}`).click(this.buyProperty);
 
         var end_button = $('<button>').text("End").addClass('end_turn');
-        var player_chip = $('<div>').addClass('player1').css('background-image', `url("images/${this.playerCharacter.toLowerCase()}.jpg")`);
+
+
+        var player_chip = $('<div>').addClass(`player1 ${this.playerCharacter}`).css('background-image', `url("images/${this.playerCharacter.toLowerCase()}.jpg")`);
         player_container.append(player_name, player_balance, roll_button, buy_button, end_button);
+
         $('.players_container').append(player_container);
         $('.go').append(player_chip);
     }

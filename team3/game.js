@@ -13,10 +13,11 @@ class Game {
   }
 
   displayPlayer(){
-    $('.player_name').text(this.playerCharacter);
+    $(`#${this.playerCharacter}`).text(this.playerCharacter);
     $('.player_character').text(this.playerCharacter);
     $('.player_balance').text(this.initialBalance);
     //this.allPlayers[this.playerName].balance
+
   }
 }
 

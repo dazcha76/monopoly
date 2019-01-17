@@ -11,12 +11,19 @@ function initGame(){
 }
 
 function clickHandlers() {
+    $('.next_player').click(
+        function(){
+            newGame = new Game();
+            newGame.createPlayer();
+            newGame.displayPlayer();
+            $('.buy').hover(displayPropertyInfo);
+        }
+    );
+
   $('.start_game').click(function(){
-      newGame = new Game();
       newGame.createPlayer();
       newGame.displayPlayer();
       $('.welcome_page').addClass('hidden');
-      $('.buy').hover(displayPropertyInfo);
   });
 
   $('.character').click(selectCharacter);
