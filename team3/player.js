@@ -3,6 +3,13 @@ class Player{
         this.balance=1500;
         this.playerName = name;
         this.playerCharacter = character;
+        this.position=0;
+    }
+    move_player(diceRoll){
+        this.dice_roll=diceRoll;
+        this.position += this.dice_roll;
+        console.log(this.position);
+        $('.player').appendTo('.'+this.position);
     }
 
     addMoney(deposit){
@@ -22,8 +29,7 @@ class Player{
     checkMoney(){
         return this.balance;
     }
-
-
+   
     addProperty(){}
     removeProperty(){}
     checkProperty(){}
@@ -36,6 +42,5 @@ class Player{
     addUtilities(){}
     removeUtilities(){}
     checkUtilities(){}
-
-
 }
+var sky = new Player('sky', 'frodo');

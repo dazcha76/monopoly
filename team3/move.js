@@ -1,13 +1,12 @@
 class Move {
-  // constructor(player, position, dice_roll){
+  // constructor(player, position){
   constructor(){
     // this.player = player;
-    // this.position = position;
     // this.dice_roll = dice_roll;
-    this.position = 0;
+    this.position = newGame.allPlayers.Sky.position;
+    console.log(this.position)
     //this.dice_roll = 1;
 
-    this.board_array = ['go', 'one'];
   }
 
   move_player(diceRoll){
@@ -18,5 +17,3 @@ class Move {
   }
 
 }
-
-var x = new Move();
