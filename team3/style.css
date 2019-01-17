@@ -107,9 +107,25 @@ body {
     height:100%;
     width:60%;
     background-color:lightblue;
-    font-size:0;
+    display: flex;
+    /*font-size:0;*/
 }
 
+.color_bar,.text_bar {
+    height: 15%;
+}
+
+.color_bar.brown{
+    background-color: #8a6d3b;
+}
+
+.color_bar.bluegray{
+    background-color: #66afe9;
+}
+
+/*.property_title{*/
+    /*font-size: 1rem;*/
+/*}*/
 
 .middle_game_board{
     height:70%;
