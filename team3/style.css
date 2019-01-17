@@ -123,15 +123,106 @@ body {
     width:60%;
     background-color:lightblue;
     display: flex;
+    font-size: .9rem;
     /*font-size:0;*/
 }
-
+/* ======  ALL ROTATIONS  ======= */
 .top_row_properties {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+.top_row_properties > div > .property_title {
+    position: relative;
+    top: 10%;
+    left: 0%;
+    text-align: center;
+    font-size: .9rem;
+}
+
+.top_row_properties > div > .text_bar {
+    top: 25%;
+    right: 0%;
+}
+
+.top_row_properties > .properties > .property_price {
+    position: relative;
+    top: 45%;
+    right: 0%;
+    text-align: center;
+}
+
+.left_row_properties > div > .color_bar {
+    transform: rotate(90deg);
+    position: relative;
+    top: 42.75%;
+    left: 84%;
+    height: 15%;
+    width: 27%;
+}
+
+.left_row_properties > div > .property_title {
+    transform: rotate(90deg);
+    position: relative;
+    top: 29.75%;
+    left: 74%;
+    height: 13%;
+    width: 32%;
+    text-align: center;
+    font-size: .9rem;
+}
+
+.left_row_properties > div > .text_bar {
+    top: 43.75%;
+    left: 74%;
+}
+
+.left_row_properties > div > .property_price {
+    transform: rotate(90deg);
+    position: relative;
+    top: 15.75%;
+    right: 7%;
+    height: 13%;
+    width: 32%;
+    text-align: center;
+}
+
+.right_row_properties > div > .color_bar {
+    transform: rotate(270deg);
+    position: relative;
+    top: 42%;
+    right: 12%;
+    height: 15%;
+    width: 27.54%;
+}
+
+.right_row_properties > div > .property_title {
+    transform: rotate(270deg);
+    position: relative;
+    top: 29.75%;
+    right: 0%;
+    height: 13%;
+    width: 25%;
+    text-align: center;
+    font-size: .9rem;
+}
+
+.right_row_properties > div > .text_bar {
+    top: 43.75%;
+    right: 0%;
+}
+
+.right_row_properties > div > .property_price {
+    transform: rotate(270deg);
+    position: relative;
+    top: 12.75%;
+    left: 75%;
+    height: 0%;
+    width: 32%;
+    text-align: center;
 }
 
 .color_bar,.text_bar {
