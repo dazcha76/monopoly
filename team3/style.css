@@ -55,7 +55,7 @@ body {
     border: 5px solid gold;
 }
 
-.start_game {
+.start_game,.next_player {
     height: 7%;
     width: 13%;
     background: url(images/gold1.jpg);
