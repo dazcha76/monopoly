@@ -24,7 +24,7 @@ function clickHandlers() {
 }
 
 function rollDice() {
-	if(diceRolled===false){
+	if(!diceRolled){
         diceValue = Math.floor((Math.random() * 1)+1);
         $(".dice_area").text(diceValue);
         diceRolled=true;
@@ -33,7 +33,7 @@ function rollDice() {
 }
 
 function diceRolledCheck(){
-    if(diceRolled===true){
+    if(diceRolled){
         sky.move_player(diceValue);
         diceRolled=false;
     }

@@ -12,6 +12,11 @@ class Player{
         $('.player').appendTo('.'+this.position);
     }
 
+    rollDice() {
+        var roll = 3;
+        this.move_player(roll);
+    }
+
     addMoney(deposit){
         this.balance+=deposit;
         return this.balance;
