@@ -1,10 +1,11 @@
 class Player{
-    constructor(name, character){
+    constructor(name, character, turn){
         this.balance=1500;
         this.properties = [];
         this.playerName = name;
         this.playerCharacter = character;
         this.player_position=0;
+        this.currentPlayer=turn;
         this.createPlayerCard();
     }
 
@@ -12,14 +13,18 @@ class Player{
         var player_container = $('<div>').addClass('players');
         var player_name = $('<div>').addClass('player_name').attr('id', this.playerName).text(this.playerName);
         var player_balance = $('<div>').addClass('player_balance');
+        if(!this.currentPlayer){
+            var buttonContainer = $('<div>').addClass('buttons');
+        }else{
+            var buttonContainer = $('<div>').addClass('buttons').hide();
+        }
         var roll_button = $('<button>').text("Roll").addClass(`roll_dice ${this.playerCharacter}`).click(this.move_player);
         var buy_button = $('<button>').text("Buy").addClass(`buy_prop ${this.playerCharacter}`).click(this.buyProperty);
-
-        var end_button = $('<button>').text("End").addClass('end_turn');
-
+        var end_button = $('<button>').text("End").addClass('end_turn').click(this.endTurn);
+        buttonContainer.append(roll_button,buy_button,end_button);
 
         var player_chip = $('<div>').addClass(`player1 ${this.playerCharacter}`).css('background-image', `url("images/${this.playerCharacter.toLowerCase()}.jpg")`);
-        player_container.append(player_name, player_balance, roll_button, buy_button, end_button);
+        player_container.append(player_name, player_balance, buttonContainer);
 
         $('.players_container').append(player_container);
         $('.go').append(player_chip);
@@ -77,6 +82,18 @@ class Player{
         properties[currentPosition].owner = player;
         var cost = properties[currentPosition].cost;
         newGame.allPlayers[player].removeMoney(cost);
+    }
+    
+    endTurn(){
+        var player = $('.player_name').attr('id');
+        var currentPlayerName = newGame.allPlayers[player].playerName;
+        $(`#${currentPlayerName} ~ .buttons`).hide();
+        newGame.allPlayers[player].currentTurn = false;
+        var temp = playerArray.shift();
+        playerArray.push(temp);
+        newGame.allPlayers[playerArray[0]].currentTurn=true;
+        var nextPlayer = playerArray[0];
+        $(`#${nextPlayer} ~ .buttons`).show();
     }
 
     sellProperty(){}

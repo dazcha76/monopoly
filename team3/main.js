@@ -5,6 +5,9 @@ var diceRolled=false;
 var newGame = null;
 var player = null;
 var character = null;
+var playerArray=[];
+// var currentPlayer=0;
+
 
 function initGame(){
   clickHandlers();
