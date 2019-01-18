@@ -1,5 +1,7 @@
 class Player{
     constructor(name, character){
+        console.log(name);
+        console.log(character);
         this.balance=1500;
         this.properties = [];
         this.playerName = name;
@@ -32,6 +34,7 @@ class Player{
         var buttonClass = $('.roll_dice').attr('class');
         var player = buttonClass.substring(10);
         var currentPosition = newGame.allPlayers[player].player_position;
+        var currentTempName = newGame.allPlayers[player].playerName;
         var tempCurrentPosition = currentPosition;
         currentPosition += dice_roll;
         if (currentPosition > 39) {
@@ -43,9 +46,12 @@ class Player{
         }
 
         newGame.allPlayers[player].player_position = currentPosition;
-        $('.player1').appendTo('.'+ currentPosition);
+        console.log(this.playerName);
+        var target = ".player1."+currentTempName;
+        $(target).appendTo('.'+ currentPosition);
         $('.dice_one').text(dice_one);
         $('.dice_two').text(dice_two);
+
     }
 
     addMoney(deposit){
