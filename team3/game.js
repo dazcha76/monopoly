@@ -10,12 +10,11 @@ class Game {
   createPlayer(){
     this.playerName = character;
     this.playerCharacter = character;
-    if(playerArray[0]){
-      this.currentPlayer = true
-    }
-  
     playerArray.push(this.playerName);
     this.allPlayers[this.playerName] = new Player(this.playerName, this.playerCharacter, this.currentPlayer);
+    if(playerArray[0]){
+      newGame.allPlayers[playerArray[0]].currentTurn = true;
+    }
   }
 
   displayPlayer(){

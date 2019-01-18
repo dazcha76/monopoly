@@ -6,7 +6,7 @@ class Player{
         this.playerName = name;
         this.playerCharacter = character;
         this.player_position=0;
-        this.currentPlayer=turn;
+        this.currentTurn=turn;
         this.createPlayerCard();
     }
 
@@ -14,7 +14,7 @@ class Player{
         var player_container = $('<div>').addClass('players');
         var player_name = $('<div>').addClass('player_name').attr('id', this.playerName).text(this.playerName);
         var player_balance = $('<div>').addClass('player_balance');
-        if(!this.currentPlayer){
+        if(!this.currentTurn){
             var buttonContainer = $('<div>').addClass('buttons');
         }else{
             var buttonContainer = $('<div>').addClass('buttons').hide();
@@ -32,29 +32,32 @@ class Player{
     }
 
     move_player(){
-        var dice_one=Math.floor((Math.random() * 6)+1);
-        var dice_two=Math.floor((Math.random() * 6)+1);
-        var dice_roll = dice_one +dice_two;
-        var buttonClass = $('.roll_dice').attr('class');
-        var player = buttonClass.substring(10);
-        var currentPosition = newGame.allPlayers[player].player_position;
-        var currentTempName = newGame.allPlayers[player].playerName;
-        var tempCurrentPosition = currentPosition;
-        currentPosition += dice_roll;
-        if (currentPosition > 39) {
-            var positionDifference = 39 - tempCurrentPosition;
-            var newPosition = dice_roll - positionDifference - 1;
-            newGame.allPlayers[player].player_position = 0;
-            currentPosition = newPosition;
-            newGame.allPlayers[player].addMoney(200);
-        }
+        var player = $('.player_name').attr('id');
+        if (newGame.allPlayers[player].currentTurn) {
+            var dice_one = Math.floor((Math.random() * 6) + 1);
+            var dice_two = Math.floor((Math.random() * 6) + 1);
+            var dice_roll = dice_one + dice_two;
+            var buttonClass = $('.roll_dice').attr('class');
+            var player = buttonClass.substring(10);
+            var currentPosition = newGame.allPlayers[player].player_position;
+            var currentTempName = newGame.allPlayers[player].playerName;
+            var tempCurrentPosition = currentPosition;
+            currentPosition += dice_roll;
+            if (currentPosition > 39) {
+                var positionDifference = 39 - tempCurrentPosition;
+                var newPosition = dice_roll - positionDifference - 1;
+                newGame.allPlayers[player].player_position = 0;
+                currentPosition = newPosition;
+                newGame.allPlayers[player].addMoney(200);
+            }
 
-        newGame.allPlayers[player].player_position = currentPosition;
-        console.log(this.playerName);
-        var target = ".player1."+currentTempName;
-        $(target).appendTo('.'+ currentPosition);
-        $('.dice_one').text(dice_one);
-        $('.dice_two').text(dice_two);
+            newGame.allPlayers[player].player_position = currentPosition;
+            console.log(this.playerName);
+            var target = ".player1." + currentTempName;
+            $(target).appendTo('.' + currentPosition);
+            $('.dice_one').text(dice_one);
+            $('.dice_two').text(dice_two);
+        }
 
     }
 
