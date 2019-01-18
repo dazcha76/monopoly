@@ -3,13 +3,19 @@ class Game {
     this.allPlayers = {};
     this.playerName = null;
     this.playerCharacter = null;
-    this.initialBalance = 1500;
+    // this.initialBalance = 1500;
+    this.currentPlayer = false;
   }
 
   createPlayer(){
     this.playerName = character;
     this.playerCharacter = character;
-    this.allPlayers[this.playerName] = new Player(this.playerName, this.playerCharacter, this.initialBalance);
+    if(playerArray[0]){
+      this.currentPlayer = true
+    }
+  
+    playerArray.push(this.playerName);
+    this.allPlayers[this.playerName] = new Player(this.playerName, this.playerCharacter, this.currentPlayer);
   }
 
   displayPlayer(){
