@@ -15,6 +15,7 @@ function clickHandlers() {
   $('.character').on('click', selectCharacter);
 }
 
+
 function selectCharacter(){
   if($('.next_player').hasClass('clickable')){
     $('.next_player').css('opacity', '1').on('click', nextPlayer);

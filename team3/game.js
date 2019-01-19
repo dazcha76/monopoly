@@ -20,7 +20,7 @@ class Game {
   displayPlayer(){
     $(`#${this.playerCharacter}`).text(this.playerCharacter);
     $('.player_character').text(this.playerCharacter);
-    $('.player_balance').text(this.initialBalance);
+    $('.player_balance').text(`$${this.initialBalance}`);
     this.allPlayers[this.playerName].balance;
   }
 }
