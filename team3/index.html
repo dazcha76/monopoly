@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
 	<title>LOTR Monopoly</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	<link rel="stylesheet" href="style.css">
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="properties.js"></script>
-  <script type="text/javascript" src="landing_page.js"></script>
 	<script type="text/javascript" src="player.js"></script>
   <script type="text/javascript" src="game.js"></script>
   <script type="text/javascript" src="main.js"></script>
 
 </head>
 <body>
+	<audio id="ka-ching" src="sounds/ka-ching.mp3"></audio>
 
 	<div class="container">
 		<div class="game_board_container">
@@ -113,13 +114,13 @@
 					</div>
 				</div>
 				<div class="middle_middle_board">
+					<div class="landroval"><h2>Landroval</h2></div>
+					<div class="smaugs_treasure"><h2>Smaug's Treasure</h2></div>
 					<div class="center_game_board">
 						<div class="dice_area">
 							<div class="dice_one"></div>
 							<div class="dice_two"></div>
 						</div>
-					<!-- 	<div class="property_info"></div> -->
-
 					</div>
 				</div>
 				<div class="middle_right_board">
@@ -214,7 +215,9 @@
 					</div>
 				</div>
 				<div class="corner">
-					<div class="10 big jail"> Dol Guldur	</div>
+					<div class="10 big visiting">
+					 	<div class="jail">Dol Guldur</div>
+					</div>
 				</div>
 
 			</div>
@@ -223,20 +226,21 @@
 	</div>
 	
 	<div class="welcome_page">
-		<h1>The Lord of the Rings</h1>
+		<h1 class="LOTR">The Lord of the Rings</h1>
+		<h1 class="monopoly">Monopoly</h1>
 
-		<h3>Choose a character:</h3>
+		<h3 class="animated bounceInLeft"><span>Player 1</span> - Choose a character:</h3>
 		<div class="select_player">
 			<img id="Frodo" class="character" src="images/frodo.jpg">
 			<img id="Gandalf" class="character" src="images/gandalf.jpg">
 			<img id="Aragorn" class="character" src="images/aragorn.jpg">
 			<img id="Legolas" class="character" src="images/legolas.jpg">
-			<img id="Arwen" class="character" src="images/arwen.jpg">
+		<img id="Arwen" class="character" src="images/arwen.jpg">
 		</div>
-
+		
+		<button class="next_player clickable">Next</button>
 		<button class="start_game">Start</button>
-		<button class="next_player">Next</button>
-	</div>
+  </div>
 
 </body>
 </html>

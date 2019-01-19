@@ -32,6 +32,14 @@ class Player{
     }
 
     move_player(){
+        var dice = [
+            'images/1.png',
+            'images/2.png',
+            'images/3.png',
+            'images/4.png',
+            'images/5.png',
+            'images/6.png',
+        ]
         var player = $('.player_name').attr('id');
         if (newGame.allPlayers[player].currentTurn) {
             var dice_one = Math.floor((Math.random() * 6) + 1);
@@ -42,7 +50,9 @@ class Player{
             var currentPosition = newGame.allPlayers[player].player_position;
             var currentTempName = newGame.allPlayers[player].playerName;
             var tempCurrentPosition = currentPosition;
+            var target = ".player1." + currentTempName;
             currentPosition += dice_roll;
+
             if (currentPosition > 39) {
                 var positionDifference = 39 - tempCurrentPosition;
                 var newPosition = dice_roll - positionDifference - 1;
@@ -52,18 +62,19 @@ class Player{
             }
 
             newGame.allPlayers[player].player_position = currentPosition;
-            console.log(this.playerName);
-            var target = ".player1." + currentTempName;
             $(target).appendTo('.' + currentPosition);
-            $('.dice_one').text(dice_one);
-            $('.dice_two').text(dice_two);
-        }
 
+            var first_image = $('<img>').attr('src', dice[dice_one-1]);
+            var second_image = $('<img>').attr('src', dice[dice_two-1]);
+            $('.dice_one').css('background-image', `url(${dice[dice_one-1]})`);
+            $('.dice_two').css('background-image', `url(${dice[dice_two-1]})`);
+        }
     }
 
     addMoney(deposit){
         this.balance+=deposit;
         $(".player_balance").text(this.balance);
+        document.getElementById("ka-ching").play();
         return this.balance;
     }
 
