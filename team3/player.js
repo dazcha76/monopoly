@@ -14,7 +14,7 @@ class Player{
 
     createPlayerCard(){
         var player_container = $('<div>').addClass('players');
-        var player_name = $('<div>').addClass('player_name').attr('id', this.playerName).text(this.playerName);
+        var player_name = $('<div>').addClass('player_name ' +this.playerName).text(this.playerName);
         var player_balance = $('<div>').addClass('player_balance');
         var player_properties = $('<div>').addClass('player_properties');
         var row1 =  $('<div>').addClass('row1');
@@ -44,7 +44,12 @@ class Player{
         var end_button = $('<button>').text("End").addClass('end_turn').click(this.endTurn);
         buttonContainer.append(roll_button, end_button);
 
-        var player_chip = $('<div>').addClass(`player1 ${this.playerCharacter}`).css('background-image', `url("images/${this.playerCharacter.toLowerCase()}.jpg")`);
+        var player_chip = $('<div>').addClass('player_chip').attr('id', this.playerName).css('background-image', `url("images/${this.playerCharacter.toLowerCase()}.jpg")`);
+
+        if(playerArray.length>0){
+            $(`#${playerArray[0]}`).addClass('player1');
+        }
+
         player_container.append(player_name, player_balance, player_properties, buttonContainer);
 
         $('.players_container').append(player_container);
@@ -52,17 +57,18 @@ class Player{
     }
 
     move_player(){        
-        var player = $('.player_name').attr('id');
-        if (newGame.allPlayers[player].currentTurn) {
+        var player = $('.player1').attr('id');
+        // if (newGame.allPlayers[player].currentTurn) {
+        if (newGame.allPlayers[player]) {
             var dice_one = Math.floor((Math.random() * 6) + 1);
             var dice_two = Math.floor((Math.random() * 6) + 1);
             var dice_roll = dice_one + dice_two;
             var buttonClass = $('.roll_dice').attr('class');
-            var player = buttonClass.substring(10);
+            //var player = buttonClass.substring(10);
             var currentPosition = newGame.allPlayers[player].player_position;
-            var currentTempName = newGame.allPlayers[player].playerName;
+            //var currentTempName = newGame.allPlayers[player].playerName;
             var tempCurrentPosition = currentPosition;
-            var target = ".player1." + currentTempName;
+            //var target = ".player1." + currentTempName;
             currentPosition += dice_roll;
 
             if (currentPosition > 39) {
@@ -74,27 +80,27 @@ class Player{
             }
 
             newGame.allPlayers[player].player_position = currentPosition;
-            $(target).appendTo('.' + currentPosition);
+            $(`#${player}`).appendTo('.' + currentPosition);
 
             $('.dice_one').css('background-image', `url(images/${dice_one}.png)`);
             $('.dice_two').css('background-image', `url(images/${dice_two}.png)`);
 
-            newGame.allPlayers[player].handleSpaces(target, currentPosition);
+            newGame.allPlayers[player].handleSpaces(player, currentPosition);
         }
     }
 
     handleSpaces(player, position){
-        var playerName = player.substring(9);
+        var playerName = player;
 
         if(position === 30){
             $(player).appendTo('.30');
             document.getElementById("not_pass").play();
             setTimeout(this.goToJail, 5000);
-            return
+            return;
         }
 
         if(properties[position].status === 'not for sale'){
-            return
+            return;
         } else if(properties[position].owned === false){
 
             $('.option_button_1').remove();
@@ -105,7 +111,7 @@ class Player{
                 var button_one=$('<button>').addClass(`option_button_1 buy_prop ${this.playerCharacter}`).text('Yes').on('click',this.buyProperty);
                 var button_two=$('<button>').addClass('option_button_2').text('No').click(function(){
                     $('.options_modal').addClass('hidden');
-                    $('.option_button_1').removeClass(`buy_prop ${player.substring(9)}`).empty();
+                    $('.option_button_1').removeClass(`buy_prop ${player}`).empty();
                     $('.option_button_2').empty();
                 });
 
@@ -118,10 +124,10 @@ class Player{
     }
 
     goToJail(){
-        var player = $('.player_name').attr('id');
+        var player = $('.player1').attr('id');
         var currentPosition = newGame.allPlayers[player].player_position;
-        var target = ".player1." + newGame.allPlayers[player].playerName;
-        $(target).appendTo('.jail');
+       // var target = ".player1." + newGame.allPlayers[player].playerName;
+        $(player).appendTo('.jail');
         currentPosition = 10;
     }
 
@@ -134,9 +140,13 @@ class Player{
 
     removeMoney(withdraw){
         if(withdraw>this.balance){
-            return
+            withdraw=this.balance;
+            this.balance=0;
+            return;
         }
+
         this.balance-=withdraw;
+
         $(".player_balance").text(`$${this.balance}`);
     }
 
@@ -166,26 +176,36 @@ class Player{
     }
     
     endTurn(){
-        var player = $('.player_name').attr('id');
-        var currentPlayerName = newGame.allPlayers[player].playerName;
-        $(`#${currentPlayerName} ~ .buttons`).hide();
-        newGame.allPlayers[player].currentTurn = false;
+        //var player = $('.player1').attr('id');
+       // var currentPlayerName = newGame.allPlayers[player].playerName;
+        //$(`#${currentPlayerName} ~ .buttons`).hide();
+        //newGame.allPlayers[player].currentTurn = false;
+        $('.player1').removeClass('player1');
         var temp = playerArray.shift();
         playerArray.push(temp);
-        newGame.allPlayers[playerArray[0]].currentTurn=true;
+        //newGame.allPlayers[playerArray[0]].currentTurn=true;
         var nextPlayer = playerArray[0];
-        $(`#${nextPlayer} ~ .buttons`).show();
+        $(`#${nextPlayer}`).addClass('player1');
     }
 
     payRent(){
 
         $('.option_button_1, .option_button_2').remove();
 
-        var owner=$('.player_name').attr('id');
-        var currentPosition = newGame.allPlayers[owner].player_position;
+
+        var current_player=$('.player1').attr('id');
+        var currentPosition = newGame.allPlayers[current_player].player_position;
+        var owner=properties[currentPosition].owner;
+
          if(properties[currentPosition].owned ===true){
-             this.removeMoney(properties[currentPosition].rent);
-             newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
+             if(properties[currentPosition].rent<newGame.allPlayers[current_player].balance){
+                 newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
+                 newGame.allPlayers[current_player].balance-=properties[currentPosition].rent;
+             }else{
+                 newGame.allPlayers[owner].balance+= newGame.allPlayers[current_player].balance;
+                 newGame.allPlayers[current_player].balance=0;
+             }
+
          }
 
         $('.options_modal').removeClass('hidden');

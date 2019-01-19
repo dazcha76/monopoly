@@ -45,7 +45,7 @@ body {
     margin: 0 auto;
 }
 
-.character {
+.Frodo,.Gandalf,.Aragorn,.Legolas,.Arwen {
     height: 20vh;
     width: 10vw;
     border-radius: 50%;

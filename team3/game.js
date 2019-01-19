@@ -10,7 +10,7 @@ class Game {
   createPlayer(){
     this.playerName = character;
     this.playerCharacter = character;
-    playerArray.push(this.playerName);
+    //playerArray.push(this.playerName);
     this.allPlayers[this.playerName] = new Player(this.playerName, this.playerCharacter, this.initialBalance, this.currentPlayer);
     if(playerArray[0]){
       newGame.allPlayers[playerArray[0]].currentTurn = true;
@@ -22,6 +22,7 @@ class Game {
     $('.player_character').text(this.playerCharacter);
     $('.player_balance').text(`$${this.initialBalance}`);
     this.allPlayers[this.playerName].balance;
+    $(`#${playerArray[0]}`).addClass('player1');
   }
 }
 

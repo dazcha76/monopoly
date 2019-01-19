@@ -12,16 +12,19 @@ function initGame(){
 }
 
 function clickHandlers() {
-  $('.character').on('click', selectCharacter);
+  $('.Frodo,.Gandalf,.Aragorn,.Legolas,.Arwen').on('click', selectCharacter);
 }
 
 
 function selectCharacter(){
+
+  character = $(this).attr('class');
+    playerArray.push(character);
   if($('.next_player').hasClass('clickable')){
     $('.next_player').css('opacity', '1').on('click', nextPlayer);
   }
   $(this).css('opacity', '0.3').off('click').addClass('picked');
-  character = $(this).attr('id');
+
   $('h3').removeClass('animated bounceInLeft');
   console.log("character")
 }
@@ -34,14 +37,16 @@ function nextPlayer(){
   $('h3').addClass('animated bounceInLeft');
   $('.next_player').css('opacity', '0.3').off('click', nextPlayer).removeClass('clickable');
   $('.start_game').css('opacity', '1').on('click', startGame);
-  console.log("next player")
+  console.log("next player");
+
 }
 
 function startGame(){
   newGame.createPlayer();
   newGame.displayPlayer();
   $('.welcome_page').addClass('hidden');
-  console.log("start game")
+  console.log("start game");
+    //playerArray.push(character);
 }
 
 function displayPropertyInfo(){
