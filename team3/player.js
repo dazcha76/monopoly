@@ -96,17 +96,23 @@ class Player{
         if(properties[position].status === 'not for sale'){
             return
         } else if(properties[position].owned === false){
+
+            $('.option_button_1').remove();
+
             if(properties[position].cost < newGame.allPlayers[playerName].balance){
                 $('.options_modal').removeClass('hidden');
                 $('.option').text('Would you like to buy ' + properties[position].name + ' for $' + properties[position].cost + '?');
-                $('.option_button_1').text('Yes').addClass(`buy_prop ${this.playerCharacter}`).on('click', this.buyProperty);
-                $('.option_button_2').text('No').click(function(){
+                var button_one=$('<button>').addClass(`option_button_1 buy_prop ${this.playerCharacter}`).text('Yes').on('click',this.buyProperty);
+                var button_two=$('<button>').addClass('option_button_2').text('No').click(function(){
                     $('.options_modal').addClass('hidden');
                     $('.option_button_1').removeClass(`buy_prop ${player.substring(9)}`).empty();
                     $('.option_button_2').empty();
                 });
+
+                $('.options_wrapper').append(button_one,button_two);
+
             } else {
-                return
+                return;
             }
         }
     }
@@ -169,6 +175,25 @@ class Player{
         newGame.allPlayers[playerArray[0]].currentTurn=true;
         var nextPlayer = playerArray[0];
         $(`#${nextPlayer} ~ .buttons`).show();
+    }
+
+    payRent(){
+
+        $('.option_button_1, .option_button_2').remove();
+
+        var owner=$('.player_name').attr('id');
+        var currentPosition = newGame.allPlayers[owner].player_position;
+         if(properties[currentPosition].owned ===true){
+             this.removeMoney(properties[currentPosition].rent);
+             newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
+         }
+
+        $('.options_modal').removeClass('hidden');
+        $('.option').text('This property is owned by ' + properties[currentPosition].owner + '. Pay owner $' + properties[currentPosition].rent + '!');
+        var rent_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
+            $('.options_modal').addClass('hidden');});
+        $('.options_wrapper').append(rent_button);
+
     }
 
     sellProperty(){}
