@@ -473,8 +473,8 @@ h2 {
 /* corner images */
 
 .jail{
-    height: 60%;
-    width: 60%;
+    height: 65%;
+    width: 65%;
     float: right;
     background-image:url(properties/dolguldur.png);
     background-size: cover;

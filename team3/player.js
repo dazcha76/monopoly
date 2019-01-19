@@ -1,7 +1,7 @@
 class Player{
 
-    constructor(name, character, turn){
-        this.balance=1500;
+    constructor(name, character, amount, turn){
+        this.balance=amount;
         this.properties = [];
         this.playerName = name;
         this.playerCharacter = character;
@@ -31,15 +31,7 @@ class Player{
         $('.go').append(player_chip);
     }
 
-    move_player(){
-        var dice = [
-            'images/1.png',
-            'images/2.png',
-            'images/3.png',
-            'images/4.png',
-            'images/5.png',
-            'images/6.png',
-        ]
+    move_player(){        
         var player = $('.player_name').attr('id');
         if (newGame.allPlayers[player].currentTurn) {
             var dice_one = Math.floor((Math.random() * 6) + 1);
@@ -53,6 +45,17 @@ class Player{
             var target = ".player1." + currentTempName;
             currentPosition += dice_roll;
 
+            if(currentPosition === 30){
+                $(target).appendTo('.30');
+                document.getElementById("not_pass").play();
+
+                // setTimeout(this.goToJail, 5000);
+
+                $(target).appendTo('.jail');
+                currentPosition = 10;
+                return
+            }
+
             if (currentPosition > 39) {
                 var positionDifference = 39 - tempCurrentPosition;
                 var newPosition = dice_roll - positionDifference - 1;
@@ -64,12 +67,15 @@ class Player{
             newGame.allPlayers[player].player_position = currentPosition;
             $(target).appendTo('.' + currentPosition);
 
-            var first_image = $('<img>').attr('src', dice[dice_one-1]);
-            var second_image = $('<img>').attr('src', dice[dice_two-1]);
-            $('.dice_one').css('background-image', `url(${dice[dice_one-1]})`);
-            $('.dice_two').css('background-image', `url(${dice[dice_two-1]})`);
+            $('.dice_one').css('background-image', `url(images/${dice_one}.png)`);
+            $('.dice_two').css('background-image', `url(images/${dice_two}.png)`);
         }
     }
+
+    // goToJail(){
+    //     $(target).appendTo('.jail');
+    //     currentPosition = 10;
+    // }
 
     addMoney(deposit){
         this.balance+=deposit;
