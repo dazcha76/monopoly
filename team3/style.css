@@ -17,7 +17,7 @@ body {
     flex-wrap:wrap;
     justify-content: space-around;
     height:100vh;
-    width:90%;
+    width:95%;
 } 
 
 /*-------------- LANDING PAGE --------------*/
@@ -33,10 +33,6 @@ body {
     font-family: 'LOTR';
     font-size: 2vw;
     text-align: center;
-}
-
-.hidden {
-    display: none;
 }
 
 .select_player {
@@ -69,6 +65,7 @@ body {
     outline: none;
     cursor: pointer;
     opacity: 0.3;
+    border-radius: 6px;
 }
 
 .next_player {
@@ -146,7 +143,7 @@ h3 {
 .smaugs_treasure {
     background-image: url('properties/smaugstreasure.png');
     top: 73%;
-    left: 58%;
+    left: 61%;
     color: white;
 }
 
@@ -182,8 +179,11 @@ h2 {
 }
 
 .players_container{
-    height:98%;
-    width:20%;
+    height:100%;
+    width:22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .player1 {
@@ -348,36 +348,44 @@ h2 {
     height: 15%;
 }
 
-.color_bar.brown{
+.brown{
     background-color: #8a6d3b;
 }
 
-.color_bar.bluegray{
+.bluegray{
     background-color: #66afe9;
 }
 
-.color_bar.violet{
+.violet{
     background-color: violet;
 }
 
-.color_bar.orange{
+.orange{
     background-color: orange;
 }
 
-.color_bar.red{
+.red{
     background-color: red;
 }
 
-.color_bar.yellow{
+.yellow{
     background-color: yellow;
 }
 
-.color_bar.green{
+.green{
     background-color: green;
 }
 
-.color_bar.blue{
+.blue{
     background-color: blue;
+}
+
+.black{
+    background-color: black;
+}
+
+.white{
+    background-color: white;
 }
 
 .middle_game_board{
@@ -417,29 +425,109 @@ h2 {
     left: 30%;
 }
 
+/*-------------- OPTIONS --------------*/
+
+.options_modal {
+    font-family: 'LOTR';
+    height: 100%;
+    width: 100%;
+    background-color: rgba(95, 91, 83, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.options_wrapper {
+    height: 20%;
+    width: 25%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ecdfc4;
+    border: 8px solid #d0af6b;
+    border-radius: 10px;
+    padding: 2%;
+    text-align: center;
+}
+
+.option {
+    font-size: 150%;
+    color: #d0af6b;
+    margin-bottom: 15%;
+}
+
+.option_button_1, .option_button_2 {
+    height: 25%;
+    width: 25%;
+    background-color: #d0af6b;
+    font-size: 110%;
+    color: #ecdfc4;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-family: 'LOTR';
+}
+
+.option_button_1 {
+    margin-right: 10%;
+}
+
 /*-------------- players--------------*/
 
 .players{
-    height: 40%;
-    width: 80%;
-    margin: 5% auto;
+    height: 45%;
+    width: 100%;
     text-align: center;
     background-color: #e3cfa7;
     border: 5px solid #d0af6b;
     font-family: 'LOTR';
+    font-size: 150%;
+    color: #d0af6b;
 }
 
 .player_name{
     height:15%;
     width:100%;
-    font-size: 150%;
     background-color: #d0af6b;
+    color: #ecdfc4;
+    font-size: 150%;
 }
 
 .player_balance{
-    height:60%;
+    height:12%;
     width:100%;
     font-size: 120%;
+}
+
+.player_properties {
+    height:52%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.row1, .row2 {
+    height: 46%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.colorContainer {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.bought_prop {
+    height:20px;
+    width:45px;
 }
 
 .player_character {
@@ -449,17 +537,22 @@ h2 {
     border: 5px solid gold;
 }
 
-.roll_dice, .end_turn, .buy_prop {
-    height: 9%;
+.buttons {
+    margin-top: 2%;
+}
+
+.roll_dice, .end_turn {
     width: 35%;
+    padding: 5% 0;
     background-color: #d0af6b;
-    font-size: 1.3vw;
+    color: #ecdfc4;
     font-family: 'LOTR';
-    font-weight: 900;
+    font-size: 75%;
     margin: 2% auto;
     border: none;
     outline: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .end_turn {
@@ -473,9 +566,15 @@ h2 {
 /* corner images */
 
 .jail{
-    height: 60%;
-    width: 60%;
+    height: 65%;
+    width: 65%;
     float: right;
     background-image:url(properties/dolguldur.png);
     background-size: cover;
+}
+
+/*-------------- SPECIAL CLASSES --------------*/
+
+.hidden {
+    display: none;
 }
