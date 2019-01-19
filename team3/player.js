@@ -117,9 +117,11 @@ class Player{
 
                 $('.options_wrapper').append(button_one,button_two);
 
-            } else {
+            } else  {
                 return;
             }
+        } else if(properties[position].owned === true){
+            this.payRent();
         }
     }
 
@@ -210,6 +212,8 @@ class Player{
              }
 
          }
+        $(`.player_balance.${this.playerName}`).text(`$${this.balance}`);
+        $(`.player_balance.${owner}`).text(`$${newGame.allPlayers[owner].balance}`);
         if(this.balance===0){
             this.playerLoses();
         }
