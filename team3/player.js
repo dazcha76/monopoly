@@ -13,25 +13,25 @@ class Player{
     }
 
     createPlayerCard(){
-        var player_container = $('<div>').addClass('players');
+        var player_container = $('<div>').addClass(`players ${this.playerName}`);
         var player_name = $('<div>').addClass('player_name ' +this.playerName).text(this.playerName);
-        var player_balance = $('<div>').addClass('player_balance');
+        var player_balance = $('<div>').addClass('player_balance ' + this.playerName);
         var player_properties = $('<div>').addClass('player_properties');
         var row1 =  $('<div>').addClass('row1');
         var row2 =  $('<div>').addClass('row2');
-        var brown = $('<div>').addClass('colorContainer brown');
-        var bluegray = $('<div>').addClass('colorContainer bluegray');
-        var violet = $('<div>').addClass('colorContainer violet');
-        var orange = $('<div>').addClass('colorContainer orange');
-        var red = $('<div>').addClass('colorContainer red');
-        var yellow = $('<div>').addClass('colorContainer yellow');
-        var green = $('<div>').addClass('colorContainer green');
-        var blue = $('<div>').addClass('colorContainer blue');
-        var black = $('<div>').addClass('colorContainer black');
-        var white = $('<div>').addClass('colorContainer white');
+        var brown = $('<div>').addClass('colorContainer brown ' + this.playerName);
+        var bluegray = $('<div>').addClass('colorContainer bluegray ' + this.playerName);
+        var violet = $('<div>').addClass('colorContainer violet ' + this.playerName);
+        var orange = $('<div>').addClass('colorContainer orange ' + this.playerName);
+        var red = $('<div>').addClass('colorContainer red ' + this.playerName);
+        var yellow = $('<div>').addClass('colorContainer yellow ' + this.playerName);
+        var green = $('<div>').addClass('colorContainer green ' + this.playerName);
+        var blue = $('<div>').addClass('colorContainer blue ' + this.playerName);
+        var black = $('<div>').addClass('colorContainer black ' + this.playerName);
+        var white = $('<div>').addClass('colorContainer white ' + this.playerName);
 
-        row1.append(brown, bluegray, violet, orange, black),
-        row2.append(red, yellow, green, blue, white)
+        row1.append(brown, bluegray, violet, orange, black);
+        row2.append(red, yellow, green, blue, white);
         player_properties.append(row1, row2);
 
         if(!this.currentTurn){
@@ -133,7 +133,7 @@ class Player{
 
     addMoney(deposit){
         this.balance+=deposit;
-        $(".player_balance").text(`$${this.balance}`);
+        $(`.player_balance.${this.playerName}`).text(`$${this.balance}`);
         document.getElementById("ka-ching").play();
         return this.balance;
     }
@@ -144,10 +144,13 @@ class Player{
             this.balance=0;
             return;
         }
+        if(this.balance===0){
+            this.playerLoses();
+        }
 
         this.balance-=withdraw;
 
-        $(".player_balance").text(`$${this.balance}`);
+        $(`.player_balance.${this.playerName}`).text(`$${this.balance}`);
     }
 
     // checkMoney(){
@@ -155,6 +158,7 @@ class Player{
     // }
    
     buyProperty(){
+
         var buttonClass = $('.buy_prop').attr('class');
         var containerClass = $('.colorContainer').attr('class').substring(15);
         var player = buttonClass.substring(25);
@@ -164,14 +168,14 @@ class Player{
         
         var newProperty = $('<div>').addClass(`bought_prop ${prop.color}`);
 
-        $(`.colorContainer.${prop.color}`).append(newProperty);
+        $(`.colorContainer.${prop.color}.${player}`).append(newProperty);
 
         newGame.allPlayers[player].properties.push(prop);
         properties[currentPosition].owned = true;
         properties[currentPosition].owner = player;
         newGame.allPlayers[player].removeMoney(cost);
-        $('.option_button_1').removeClass(`buy_prop ${player}`).empty();
-        $('.option_button_2').empty();
+        $('.option_button_1').remove();
+        $('.option_button_2').remove();
         $('.options_modal').addClass('hidden');
     }
     
@@ -192,7 +196,6 @@ class Player{
 
         $('.option_button_1, .option_button_2').remove();
 
-
         var current_player=$('.player1').attr('id');
         var currentPosition = newGame.allPlayers[current_player].player_position;
         var owner=properties[currentPosition].owner;
@@ -207,17 +210,32 @@ class Player{
              }
 
          }
+        if(this.balance===0){
+            this.playerLoses();
+        }
+
 
         $('.options_modal').removeClass('hidden');
         $('.option').text('This property is owned by ' + properties[currentPosition].owner + '. Pay owner $' + properties[currentPosition].rent + '!');
-        var rent_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
+        var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
             $('.options_modal').addClass('hidden');});
-        $('.options_wrapper').append(rent_button);
+        $('.options_wrapper').append(ok_button);
 
     }
 
     sellProperty(){}
 
     checkProperty(){}
+
+
+   playerLoses(){
+        var player = $('.player1').attr('id');
+       $('.options_modal').removeClass('hidden');
+       $('.option').text( player +' you lost!');
+       var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
+           $('.options_modal').addClass('hidden')});
+       $('.options_wrapper').append(ok_button);
+   }
+
 
 }

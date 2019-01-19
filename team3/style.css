@@ -45,7 +45,7 @@ body {
     margin: 0 auto;
 }
 
-.Frodo,.Gandalf,.Aragorn,.Legolas,.Arwen {
+.select{
     height: 20vh;
     width: 10vw;
     border-radius: 50%;
@@ -186,7 +186,7 @@ h2 {
     justify-content: space-evenly;
 }
 
-.player1 {
+.player_chip {
     height: 6vh;
     width: 3vw;
     border-radius: 50%;
@@ -475,7 +475,7 @@ h2 {
 
 /*-------------- players--------------*/
 
-.players{
+.players.Frodo,.players.Gandalf,.players.Aragorn,.players.Legolas,.players.Arwen {
     height: 45%;
     width: 100%;
     text-align: center;
@@ -486,7 +486,7 @@ h2 {
     color: #d0af6b;
 }
 
-.player_name{
+.player_name.Frodo,.player_name.Gandalf ,.player_name.Aragorn ,.player_name.Legolas ,.player_name.Arwen{
     height:15%;
     width:100%;
     background-color: #d0af6b;
@@ -494,13 +494,13 @@ h2 {
     font-size: 150%;
 }
 
-.player_balance{
+.player_balance.Frodo , .player_balance.Gandalf , .player_balance.Aragorn , .player_balance.Legolas ,.player_balance.Arwen {
     height:12%;
     width:100%;
     font-size: 120%;
 }
 
-.player_properties {
+.player_properties.Frodo , .player_properties.Gandalf , .player_properties.Aragorn, .player_properties.Legolas ,.player_properties.Arwen{
     height:52%;
     width:100%;
     display: flex;

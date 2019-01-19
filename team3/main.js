@@ -12,13 +12,13 @@ function initGame(){
 }
 
 function clickHandlers() {
-  $('.Frodo,.Gandalf,.Aragorn,.Legolas,.Arwen').on('click', selectCharacter);
+  $('.select').on('click', selectCharacter);
 }
 
 
 function selectCharacter(){
 
-  character = $(this).attr('class');
+  character = $(this).attr('class').substring(7);
     playerArray.push(character);
   if($('.next_player').hasClass('clickable')){
     $('.next_player').css('opacity', '1').on('click', nextPlayer);
