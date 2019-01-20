@@ -30,7 +30,7 @@ function nextPlayer(){
   newGame = new Game();
   newGame.createPlayer();
   newGame.displayPlayer();
-  $('span').text('Player 2');
+  $('.which_player').text('Player 2');
   $('h3').addClass('animated bounceInLeft');
   $('.next_player').css('opacity', '0.3').off('click', nextPlayer).removeClass('clickable');
   $('.start_game').css('opacity', '1').on('click', startGame);

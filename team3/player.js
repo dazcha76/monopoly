@@ -9,7 +9,7 @@ class Player{
         this.createPlayerCard();
 
         this.goToJail = this.goToJail.bind(this);
-        this.showDeed = this.showDeed.bind(this);
+        this.buyProperty = this.buyProperty.bind(this);
     }
 
     createPlayerCard(){
@@ -56,7 +56,7 @@ class Player{
         player_container.append(player_name, player_balance, player_properties, buttonContainer);
 
         $('.players_container').append(player_container);
-        $('.go').append(player_chip);
+        $('.0.num').append(player_chip);
     }
 
     move_player(){        
@@ -79,7 +79,7 @@ class Player{
             }
 
             newGame.allPlayers[player].player_position = currentPosition;
-            $(`#${player}`).appendTo('.' + currentPosition);
+            $(`#${player}`).appendTo('.' + currentPosition + '.num');
 
             $('.dice_one').css('background-image', `url(images/${dice_one}.png)`);
             $('.dice_two').css('background-image', `url(images/${dice_two}.png)`);
@@ -92,7 +92,7 @@ class Player{
         var playerName = player;
 
         if(position === 30){
-            $(player).appendTo('.30');
+            $(player).appendTo('.30.num');
             document.getElementById("not_pass").play();
             setTimeout(this.goToJail, 5000);
             return;
@@ -161,14 +161,11 @@ class Player{
         var currentPosition = newGame.allPlayers[player].player_position;
         var prop = properties[currentPosition];
         var cost = properties[currentPosition].cost;
-
-
-
         var newProperty = $('<div>')
-                            .addClass(`bought_prop ${prop.color}`)
-                            .click(this.showDeed)
+                            .addClass(`${currentPosition} bought_prop ${prop.color}`)
+                            .hover(this.showDeed, this.hideDeed)
                             .text(`${prop.initials}`);
-                            
+
         $(`.colorContainer.${prop.color}.${player}`).append(newProperty);
 
         newGame.allPlayers[player].properties.push(prop);
@@ -225,28 +222,40 @@ class Player{
     checkProperty(){}
 
 
-   playerLoses(){
+    playerLoses(){
         var player = $('.player1').attr('id');
-       $('.options_modal').removeClass('hidden');
-       $('.option').text( player +' you lost!');
-       var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
-           $('.options_modal').addClass('hidden')});
-       $('.options_wrapper').append(ok_button);
-   }
-
-   showDeed(){
-      console.log("deed info")
-      // $('.deed_modal').removeClass('hidden');
+        $('.options_modal').removeClass('hidden');
+        $('.option').text( player +' you lost!');
+        var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
+        $('.options_modal').addClass('hidden')});
+        $('.options_wrapper').append(ok_button);
     }
 
-   displayPropertyInfo(){
-      var thisCard = $(this).attr('class');
-      var thisPosition = parseInt(thisCard);
-      var propertyInfo = properties[thisPosition];
-      var details;
-      for(details in propertyInfo){
-        var detail = $('<p>').text(details + ": " + propertyInfo[details]);
-        $('.property_info').append(detail);
-      }
+    showDeed(){
+        var propertyIndex = parseInt($(this).attr('class'));
+        var currentProperty = properties[propertyIndex];
+        console.log(currentProperty);
+        if(currentProperty.color === 'brown'){
+            $('.deed_modal').removeClass('hidden').css('border', '8px solid #8a6d3b');
+        } else if(currentProperty.color === 'bluegray'){
+            $('.deed_modal').removeClass('hidden').css('border', '8px solid #66afe9');
+        } else {
+            $('.deed_modal').removeClass('hidden').css('border', `8px solid ${currentProperty.color}`);
+        }
+        $('.deed_bar').addClass(currentProperty.color)
+        $('.deed_bar > p').text(currentProperty.name);
+        $('.rent_value').text(currentProperty.rent);
+        $('.rent_set_value').text(currentProperty.monopolyRent);
+        $('.one_house_value').text(currentProperty.house1);
+        $('.two_houses_value').text(currentProperty.house2);
+        $('.three_houses_value').text(currentProperty.house3);
+        $('.four_houses_value').text(currentProperty.house4);
+        $('.hotel_value').text(currentProperty.hotel);
+        $('.house_cost_value').text(currentProperty.houseCost);
+        $('.hotel_cost_value').text(currentProperty.hotelCost);
+    }
+
+    hideDeed(){
+      $('.deed_modal').addClass('hidden');
     }
 }
