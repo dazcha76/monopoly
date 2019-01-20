@@ -6,10 +6,10 @@ class Player{
         this.playerName = name;
         this.playerCharacter = character;
         this.player_position=0;
-        this.currentTurn=turn;
         this.createPlayerCard();
 
         this.goToJail = this.goToJail.bind(this);
+        this.showDeed = this.showDeed.bind(this);
     }
 
     createPlayerCard(){
@@ -40,7 +40,10 @@ class Player{
             var buttonContainer = $('<div>').addClass('buttons').hide();
         }
 
-        var roll_button = $('<button>').text("Roll").addClass(`roll_dice ${this.playerCharacter}`).click(this.move_player);
+        var roll_button = $('<button>')
+                            .text("Roll")
+                            .addClass(`roll_dice ${this.playerCharacter}`)
+                            .click(this.move_player);
         var end_button = $('<button>').text("End").addClass('end_turn').click(this.endTurn);
         buttonContainer.append(roll_button, end_button);
 
@@ -58,17 +61,13 @@ class Player{
 
     move_player(){        
         var player = $('.player1').attr('id');
-        // if (newGame.allPlayers[player].currentTurn) {
         if (newGame.allPlayers[player]) {
             var dice_one = Math.floor((Math.random() * 6) + 1);
             var dice_two = Math.floor((Math.random() * 6) + 1);
             var dice_roll = dice_one + dice_two;
             var buttonClass = $('.roll_dice').attr('class');
-            //var player = buttonClass.substring(10);
             var currentPosition = newGame.allPlayers[player].player_position;
-            //var currentTempName = newGame.allPlayers[player].playerName;
             var tempCurrentPosition = currentPosition;
-            //var target = ".player1." + currentTempName;
             currentPosition += dice_roll;
 
             if (currentPosition > 39) {
@@ -128,7 +127,6 @@ class Player{
     goToJail(){
         var player = $('.player1').attr('id');
         var currentPosition = newGame.allPlayers[player].player_position;
-       // var target = ".player1." + newGame.allPlayers[player].playerName;
         $(player).appendTo('.jail');
         currentPosition = 10;
     }
@@ -154,10 +152,6 @@ class Player{
 
         $(`.player_balance.${this.playerName}`).text(`$${this.balance}`);
     }
-
-    // checkMoney(){
-    //     return this.balance;
-    // }
    
     buyProperty(){
 
@@ -167,12 +161,18 @@ class Player{
         var currentPosition = newGame.allPlayers[player].player_position;
         var prop = properties[currentPosition];
         var cost = properties[currentPosition].cost;
-        
-        var newProperty = $('<div>').addClass(`bought_prop ${prop.color}`);
 
+
+
+        var newProperty = $('<div>')
+                            .addClass(`bought_prop ${prop.color}`)
+                            .click(this.showDeed)
+                            .text(`${prop.initials}`);
+                            
         $(`.colorContainer.${prop.color}.${player}`).append(newProperty);
 
         newGame.allPlayers[player].properties.push(prop);
+
         properties[currentPosition].owned = true;
         properties[currentPosition].owner = player;
         newGame.allPlayers[player].removeMoney(cost);
@@ -182,49 +182,42 @@ class Player{
     }
     
     endTurn(){
-        //var player = $('.player1').attr('id');
-       // var currentPlayerName = newGame.allPlayers[player].playerName;
-        //$(`#${currentPlayerName} ~ .buttons`).hide();
-        //newGame.allPlayers[player].currentTurn = false;
         $('.player1').removeClass('player1');
         var temp = playerArray.shift();
         playerArray.push(temp);
-        //newGame.allPlayers[playerArray[0]].currentTurn=true;
         var nextPlayer = playerArray[0];
         $(`#${nextPlayer}`).addClass('player1');
     }
 
     payRent(){
-
         $('.option_button_1, .option_button_2').remove();
-
         var current_player=$('.player1').attr('id');
         var currentPosition = newGame.allPlayers[current_player].player_position;
         var owner=properties[currentPosition].owner;
-
-         if(properties[currentPosition].owned ===true){
-             if(properties[currentPosition].rent<newGame.allPlayers[current_player].balance){
-                 newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
-                 newGame.allPlayers[current_player].balance-=properties[currentPosition].rent;
-             }else{
-                 newGame.allPlayers[owner].balance+= newGame.allPlayers[current_player].balance;
-                 newGame.allPlayers[current_player].balance=0;
-             }
-
-         }
+        if(properties[currentPosition].owned ===true){
+            if(current_player === owner){
+                return
+            } else {
+                if(properties[currentPosition].rent<newGame.allPlayers[current_player].balance){
+                    newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
+                    newGame.allPlayers[current_player].balance-=properties[currentPosition].rent;
+                }else{
+                    newGame.allPlayers[owner].balance+= newGame.allPlayers[current_player].balance;
+                    newGame.allPlayers[current_player].balance=0;
+                }
+            }
+        }
         $(`.player_balance.${this.playerName}`).text(`$${this.balance}`);
         $(`.player_balance.${owner}`).text(`$${newGame.allPlayers[owner].balance}`);
         if(this.balance===0){
             this.playerLoses();
         }
-
-
         $('.options_modal').removeClass('hidden');
         $('.option').text('This property is owned by ' + properties[currentPosition].owner + '. Pay owner $' + properties[currentPosition].rent + '!');
         var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
-            $('.options_modal').addClass('hidden');});
+            $('.options_modal').addClass('hidden');
+        });
         $('.options_wrapper').append(ok_button);
-
     }
 
     sellProperty(){}
@@ -241,5 +234,19 @@ class Player{
        $('.options_wrapper').append(ok_button);
    }
 
+   showDeed(){
+      console.log("deed info")
+      // $('.deed_modal').removeClass('hidden');
+    }
 
+   displayPropertyInfo(){
+      var thisCard = $(this).attr('class');
+      var thisPosition = parseInt(thisCard);
+      var propertyInfo = properties[thisPosition];
+      var details;
+      for(details in propertyInfo){
+        var detail = $('<p>').text(details + ": " + propertyInfo[details]);
+        $('.property_info').append(detail);
+      }
+    }
 }

@@ -1,8 +1,10 @@
 var properties = [
 {status: 'not for sale', name:'GO', priceGain:200},
+
 {owned: false,
   owner: null,
   name:'Bag End',
+  initials: 'B. E.',
   color: 'brown',
    cost: 60,
    rent:2,
@@ -16,10 +18,13 @@ var properties = [
    houseCost:50,
    hotelCost:50
 },
+
 {status: 'not for sale', name:'Smaug\'s Treasure'},
+
 {owned: false,
   owner: null,
   name:'Farmer Maggot\'s',
+  initials: 'F. M.',
   color: 'brown',
    cost:60,
    rent:4,
@@ -32,12 +37,15 @@ var properties = [
    mortgage:30,
    houseCost:50,
    hotelCost:50},
+
 {status: 'not for sale', name:'Seen By The Palantir',
     cost1:'10%',
     cost2:200},
+
 {owned: false,
   owner: null,
   name:'Bill the Pony',
+  initials: 'B. T. P.',
   color: 'black',
    cost:200,
    rent:25,
@@ -46,9 +54,11 @@ var properties = [
    railroadrent4:200,
    mortgage:100
    },
+
 {owned: false,
   owner: null,
   name:'Buckleberry Ferry',
+  initials: 'B. F.',
   color: 'bluegray',
    cost: 100,
    rent:6,
@@ -61,10 +71,13 @@ var properties = [
    mortgage:50,
    houseCost:50,
    hotelCost:50},
+
 {status: 'not for sale', name:'Landroval'},
+
 {owned: false,
   owner: null,
   name:'Bree',
+  initials: 'B.',
   color: 'bluegray',
    cost:100,
    rent:6,
@@ -77,9 +90,11 @@ var properties = [
    mortgage:50,
    houseCost:50,
    hotelCost:50},
+
 {owned: false,
   owner: null,
   name:'Weathertop',
+  initials: 'W.',
   color: 'bluegray',
    cost:120,
    rent:8,
@@ -92,10 +107,13 @@ var properties = [
    mortgage:60,
    houseCost:50,
    hotelCost:50},
+
 {status: 'not for sale', name:'Dol Guldur'},
+
 {owned: false,
   owner: null,
   name:'Ford of Bruinen',
+  initials: 'F. O. B.',
   color: 'violet',
    cost:140,
    rent:10,
@@ -108,17 +126,21 @@ var properties = [
    mortgage:70,
    houseCost:100,
    hotelCost:100},
+
 {owned: false,
   owner: null,
   name:'Staff of Gandalf',
+  initials: 'S. O. G.',
   color: 'white',
   cost: 150,
    utilities1:'(4x diceroll)',
    utilities2:'(10x diceroll)'
    },
+
 {owned: false,
   owner: null,
   name:'Rivendell',
+  initials: 'R.',
   color: 'violet',
    cost:140,
    rent:10,
@@ -131,9 +153,11 @@ var properties = [
    mortgage:70,
    houseCost:100,
    hotelCost:100},
+
 {owned: false,
   owner: null,
   name:'Caradhras',
+  initials: 'C.',
   color: 'violet',
    cost:160,
    rent:12,
@@ -146,9 +170,11 @@ var properties = [
    mortgage:80,
    houseCost:100,
    hotelCost:100},
+
 {owned: false,
   owner: null,
   name:'Brego',
+  initials: 'B.',
   color: 'black',
    cost:200,
    rent:25,
@@ -156,9 +182,11 @@ var properties = [
    railroadrent3:100,
    railroadrent4:200,
    mortgage:100},
+
 {owned: false,
   owner: null,
   name:'Mines of Moria',
+  initials: 'M. O. M.',
   color: 'orange',
    cost:180,
    rent:14,
@@ -171,10 +199,13 @@ var properties = [
    mortgage:90,
    houseCost:100,
    hotelCost:100},
+
 {status: 'not for sale', name:'Smaug\'s Treasure'},
+
 {owned: false,
   owner: null,
   name:'Lothlorien',
+  initials: 'L.',
   color: 'orange',
    cost:180,
    rent:14,
@@ -187,9 +218,11 @@ var properties = [
    mortgage:90,
    houseCost:100,
    hotelCost:100},
+
 {owned: false,
   owner: null,
   name:'Falls of Rauros',
+  initials: 'F. O. R.',
   color: 'orange',
    cost:200,
    rent:16,
@@ -202,10 +235,13 @@ var properties = [
    mortgage:100,
    houseCost:100,
    hotelCost:100},
+
 {status: 'not for sale', name:'free parking'},
+
 {owned: false,
   owner: null,
   name: 'Gap of Rohan',
+  initials: 'G. O. R.',
   color: 'red',
        cost: 220,
        rent:18,
@@ -219,10 +255,13 @@ var properties = [
        hotelCost:150,
        mortage:110
         },
+
 {status: 'not for sale', name:'Landroval'},
+
 {owned: false,
   owner: null,
   name: 'Helm\'s Deep',
+  initials: 'H. D.',
   color: 'red',
         cost:220,
         rent:18,
@@ -235,9 +274,11 @@ var properties = [
         houseCost:150,
         hotelCost:150,
         mortage:110},
+
 {owned: false,
   owner: null,
   name:'Edoras',
+  initials: 'E.',
   color: 'red',
       cost:240,
        rent:20,
@@ -249,9 +290,11 @@ var properties = [
         hotel:1100,
         houseCost:150,
         hotelCost:150},
+
 {owned: false,
   owner: null,
   name:'Asfaloth',
+  initials: 'A.',
        cost:200,
        color: 'black',
        rent:25,
@@ -260,9 +303,11 @@ var properties = [
        railroadrent4:200,
        mortgage:100
         },
+
 {owned: false,
   owner: null,
   name:'Fangorn Forest',
+  initials: 'F. F.',
   color: 'yellow',
        cost:300,
         rent:22,
@@ -275,9 +320,11 @@ var properties = [
         houseCost:150,
         hotelCost:150,
         mortgage:130},
+
 {owned: false,
   owner: null,
   name:'Westfold',
+  initials: 'W.',
   color: 'yellow',
         cost:260,
         rent:22,
@@ -290,17 +337,21 @@ var properties = [
         houseCost:150,
         hotelCost:150,
         mortgage:130},
+
 {owned: false,
   owner: null,
   name:'Staff of Saruman',
+  initials: 'S. O. S.',
   color: 'white',
        cost:150,
        utilities1:'(4x diceroll)',
        utilities2:'(10x diceroll)'
 },
+
 {owned: false,
   owner: null,
   name:'Isengard',
+  initials: 'I.',
   color: 'yellow',
       cost:280,
       rent:24,
@@ -314,10 +365,13 @@ var properties = [
        hotelCost:150,
        mortgage:140
        },
+
 {status: 'not for sale', name:'Dul Guldur'},
+
 {owned: false,
   owner: null,
   name:'Osgiliath',
+  initials: 'O.',
   color: 'green',
        cost:300,
         rent:26,
@@ -331,9 +385,11 @@ var properties = [
         hotelCost:200,
         mortgage:150
        },
+
 {owned: false,
   owner: null,
   name:'Pelennor Fields',
+  initials: 'P. F.',
   color: 'green',
       cost:300,        
        rent:26,
@@ -347,10 +403,13 @@ var properties = [
       hotelCost:200,
       mortgage:150
        },
+
 {status: 'not for sale', name:'Smaug\'s Treasure'},
+
 {owned: false,
   owner: null,
   name: 'Minas Tirith',
+  initials: 'M. T.',
   color: 'green',
       cost:320,
       rent: 28,
@@ -364,9 +423,11 @@ var properties = [
        hotelCost:200,
        mortgage:160
        },
+
 {owned: false,
   owner: null,
   name:'Shadowfax',
+  initials: 'S.',
   color: 'black',
        cost:200,
        rent:25,
@@ -374,10 +435,13 @@ var properties = [
        railroadrent3:100,
        reailroadrent4:200
       },
+
 {status: 'not for sale', name:'Landroval'},
+
 {owned: false,
   owner: null,
   name:'Barad Dur',
+  initials: 'B. D.',
   color: 'blue',
        cost:350,
        rent:35,
@@ -391,11 +455,14 @@ var properties = [
        hotelCost:200,
        mortgage:175
        },
+
 {name:'Shelob\'s Lair',
       rent:100},
+
 {owned: false,
   owner: null,
   name:'Mt. Doom',
+  initials: 'M. D.',
   color: 'blue',
       cost:400,
       rent:50,

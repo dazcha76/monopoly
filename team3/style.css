@@ -273,6 +273,7 @@ h2 {
     width: 3vw;
     border-radius: 50%;
     background-size: cover;
+    border: 2px solid gold;
 }
 
 .top_game_board,.bottom_game_board{
@@ -505,9 +506,9 @@ h2 {
     left: 30%;
 }
 
-/*-------------- OPTIONS --------------*/
+/*-------------- OPTIONS MODAL --------------*/
 
-.options_modal {
+.options_modal, .deed_modal {
     font-family: 'LOTR';
     height: 100%;
     width: 100%;
@@ -553,6 +554,27 @@ h2 {
     margin-right: 10%;
 }
 
+/*-------------- DEEDS MODAL --------------*/
+
+.info_wrapper {
+    height: 60%;
+    width: 20%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ecdfc4;
+    border: 8px solid #d0af6b;
+    border-radius: 10px;
+    padding: 2%;
+    text-align: center;
+}
+
+.deed_bar {
+    height: 20%;
+    background-color: red;
+}
+
 /*-------------- players--------------*/
 
 .players.Frodo,.players.Gandalf,.players.Aragorn,.players.Legolas,.players.Arwen {
@@ -580,7 +602,7 @@ h2 {
     font-size: 120%;
 }
 
-.player_properties.Frodo , .player_properties.Gandalf , .player_properties.Aragorn, .player_properties.Legolas ,.player_properties.Arwen{
+.player_properties {
     height:52%;
     width:100%;
     display: flex;
@@ -608,6 +630,14 @@ h2 {
 .bought_prop {
     height:20px;
     width:45px;
+    text-align: center;
+    color: black;
+    font-size: 48%;
+    line-height: 20px;
+}
+
+.bought_prop.black {
+    color: white;
 }
 
 .player_character {
@@ -642,6 +672,10 @@ h2 {
 .roll_dice {
     margin-right: 5%;
 }
+
+
+
+
 
 /*-------------- SPECIAL CLASSES --------------*/
 
