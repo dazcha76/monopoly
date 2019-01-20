@@ -70,6 +70,7 @@ class Player{
             var tempCurrentPosition = currentPosition;
             currentPosition += dice_roll;
 
+
             if (currentPosition > 39) {
                 var positionDifference = 39 - tempCurrentPosition;
                 var newPosition = dice_roll - positionDifference - 1;
@@ -90,19 +91,18 @@ class Player{
 
     handleSpaces(player, position){
         var playerName = player;
-
-        if(position === 30){
-            $(player).appendTo('.30.num');
+        console.log(playerName);
+        if(properties[position].status === 'not for sale' && position===30){
+            $(playerName).appendTo('.30.num.big.go_to_jail');
+             //position=10;
             document.getElementById("not_pass").play();
             setTimeout(this.goToJail, 5000);
-            return;
-        }
-
-        if(properties[position].status === 'not for sale'){
+        }else if(properties[position].status === 'not for sale'){
             return;
         } else if(properties[position].owned === false){
 
             $('.option_button_1').remove();
+            $('.option_button_2').remove();
 
             if(properties[position].cost < newGame.allPlayers[playerName].balance){
                 $('.options_modal').removeClass('hidden');
@@ -126,9 +126,9 @@ class Player{
 
     goToJail(){
         var player = $('.player1').attr('id');
-        var currentPosition = newGame.allPlayers[player].player_position;
-        $(player).appendTo('.jail');
-        currentPosition = 10;
+        newGame.allPlayers[player].player_position = 10;
+        $(`#${player}`).appendTo('.jail');
+        return;
     }
 
     addMoney(deposit){
