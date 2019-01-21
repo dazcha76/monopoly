@@ -127,6 +127,10 @@ class Player{
             });
             $('.options_wrapper').append(ok_button);
             newGame.allPlayers[playerName].removeMoney(100);
+        } else if(position === 7 || position === 22 || position === 36){
+            this.handleLandrova();
+        } else if(position === 2 || position === 17 || position === 33){
+            this.handleSmaugsTreasure();
         }
 
         if(properties[position].owned === false){
@@ -151,6 +155,32 @@ class Player{
         } else if(properties[position].owned === true){
             this.payRent();
         }
+    }
+
+    handleLandrova(){
+        var randomNum = Math.floor((Math.random() * landroval.length));
+        var chance = landroval[randomNum];
+        $('.options_modal').removeClass('hidden');
+        $('.option').text(`${chance}`);
+        var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
+            $('.options_modal').addClass('hidden');
+            $('.ok_button').remove();
+        });
+        $('.options_wrapper').append(ok_button);
+        landroval.splice(randomNum, 1);
+    }
+
+    handleSmaugsTreasure(){
+        var randomNum = Math.floor((Math.random() * smaugs_treasure.length));
+        var chest = smaugs_treasure[randomNum];
+        $('.options_modal').removeClass('hidden');
+        $('.option').text(`${chest}`);
+        var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
+            $('.options_modal').addClass('hidden');
+            $('.ok_button').remove();
+        });
+        $('.options_wrapper').append(ok_button);
+        smaugs_treasure.splice(randomNum, 1);
     }
 
 
@@ -266,29 +296,29 @@ class Player{
                     }
 
                 } else if(newGame.allPlayers[owner].multipliers[currentColor].length === 1 && properties[currentPosition].rent < newGame.allPlayers[current_player].balance){
-                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].rent} *1!`);
+                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].rent}!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].rent;
                 } else if(newGame.allPlayers[owner].multipliers[currentColor].length === 2){
                     if(currentColor === 'black'){
                         if(properties[currentPosition].railroadrent2 < newGame.allPlayers[current_player].balance){
-                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].railroadrent2} *2!`);
+                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].railroadrent2}!`);
                             newGame.allPlayers[owner].balance+= properties[currentPosition].railroadrent2;
                             newGame.allPlayers[current_player].balance-=properties[currentPosition].railroadrent2;
                         }
                     } else if(currentColor === 'brown' || currentColor === 'blue'){
                         if(properties[currentPosition].monopolyRent < newGame.allPlayers[current_player].balance){
-                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].monopolyRent} *2!`);
+                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].monopolyRent}!`);
                             newGame.allPlayers[owner].balance+= properties[currentPosition].monopolyRent;
                             newGame.allPlayers[current_player].balance-=properties[currentPosition].monopolyRent;
                         }
                     }
                 } else if(newGame.allPlayers[owner].multipliers[currentColor].length === 3 && properties[currentPosition].monopolyRent < newGame.allPlayers[current_player].balance){
-                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].monopolyRent} *3!`);
+                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].monopolyRent}!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].monopolyRent;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].monopolyRent;
                 } else if(newGame.allPlayers[owner].multipliers.black.length === 4 && properties[currentPosition].railroadrent4 < newGame.allPlayers[current_player].balance){
-                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].railroadrent4} *4!`);
+                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].railroadrent4}!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].railroadrent4;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].railroadrent4;
                 } else {

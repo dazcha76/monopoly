@@ -16,5 +16,3 @@ var  landroval = [
   'Take a ride on Bill the Pony. If you pass GO, collect $200.',
   'Advance to Mt. Doom.'
 ]
-
-// 16 cards
