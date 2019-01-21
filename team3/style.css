@@ -539,7 +539,7 @@ h2 {
     margin-bottom: 15%;
 }
 
-.option_button_1, .option_button_2 {
+.option_button_1, .option_button_2, .ok_button {
     height: 25%;
     width: 25%;
     background-color: #d0af6b;
