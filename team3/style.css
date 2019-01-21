@@ -100,6 +100,10 @@ h3 {
 
 /*-------------- GAMEBOARD --------------*/
 
+.num {
+    position: relative;
+}
+
 .game_board_container{
     height: 100%;
     width: 75%;
@@ -191,8 +195,6 @@ div.jail{
 }
 .dolGuldur{
     text-align:center;
-    position:absolute;
-    bottom:0px;
 }
 .go_to_jail{
     background-image:url(images/youshallnotpass.jpg);
@@ -275,7 +277,17 @@ h2 {
     border-radius: 50%;
     background-size: cover;
     border: 2px solid gold;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
 }
+
+.player1 {
+    left: 35%;
+}
+
+
 
 .top_game_board,.bottom_game_board{
     height:15%;
@@ -528,7 +540,7 @@ h2 {
 .option {
     font-size: 150%;
     color: #d0af6b;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .option_button_1, .option_button_2, .ok_button {

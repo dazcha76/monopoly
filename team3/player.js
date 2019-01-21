@@ -67,7 +67,7 @@ class Player{
 
         if(playerArray.length === 1){
             $(`#${playerArray[0]}`).addClass('player1');
-        } 
+        }  
 
         this.showPlayerOne(this.playerName);
     }
@@ -91,13 +91,23 @@ class Player{
                 newGame.allPlayers[player].addMoney(200);
             }
 
+            if(currentPosition === 10){
+                $('.player_chip').css('left', '10%')
+            } else {
+                $('.player_chip').css('left', '65%')
+            }
+
             newGame.allPlayers[player].player_position = currentPosition;
+
+
             $(`#${player}`).appendTo('.' + currentPosition + '.num');
 
             $('.dice_one').css('background-image', `url(images/${dice_one}.png)`);
             $('.dice_two').css('background-image', `url(images/${dice_two}.png)`);
 
             newGame.allPlayers[player].handleSpaces(player, currentPosition);
+
+            console.log(currentPosition)
         }
     }
 
