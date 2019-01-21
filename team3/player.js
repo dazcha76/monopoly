@@ -234,7 +234,7 @@ class Player{
     showDeed(){
         var propertyIndex = parseInt($(this).attr('class'));
         var currentProperty = properties[propertyIndex];
-        console.log(currentProperty);
+
         if(currentProperty.color === 'brown'){
             $('.deed_modal').removeClass('hidden').css('border', '8px solid #8a6d3b');
         } else if(currentProperty.color === 'bluegray'){
@@ -256,6 +256,9 @@ class Player{
     }
 
     hideDeed(){
-      $('.deed_modal').addClass('hidden');
+        $('.deed_modal').addClass('hidden');
+        var propertyIndex = parseInt($(this).attr('class'));
+        var currentProperty = properties[propertyIndex];
+        $('.deed_bar').removeClass(currentProperty.color)
     }
 }
