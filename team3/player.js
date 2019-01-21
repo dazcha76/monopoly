@@ -106,8 +106,6 @@ class Player{
             $('.dice_two').css('background-image', `url(images/${dice_two}.png)`);
 
             newGame.allPlayers[player].handleSpaces(player, currentPosition);
-
-            console.log(currentPosition)
         }
     }
 
