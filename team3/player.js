@@ -90,94 +90,58 @@ class Player{
         }
     }
 
-    // handleSpaces(player, position){
-    //     var playerName = player;
-    //     console.log(playerName);
-    //     if(properties[position].status === 'not for sale' && position===30){
-    //         $(playerName).appendTo('.30.num.big.go_to_jail');
-    //          //position=10;
-    //         document.getElementById("not_pass").play();
-    //         setTimeout(this.goToJail, 5000);
-    //     }else if(properties[position].status === 'not for sale'){
-    //         return;
-    //     } else if(properties[position].owned === false){
-
-    //         $('.option_button_1').remove();
-    //         $('.option_button_2').remove();
-
-    //         if(properties[position].cost < newGame.allPlayers[playerName].balance){
-    //             $('.options_modal').removeClass('hidden');
-    //             $('.option').text('Would you like to buy ' + properties[position].name + ' for $' + properties[position].cost + '?');
-    //             var button_one=$('<button>').addClass(`option_button_1 buy_prop ${this.playerCharacter}`).text('Yes').on('click',this.buyProperty);
-    //             var button_two=$('<button>').addClass('option_button_2').text('No').click(function(){
-    //                 $('.options_modal').addClass('hidden');
-    //                 $('.option_button_1').removeClass(`buy_prop ${player}`).empty();
-    //                 $('.option_button_2').empty();
-    //             });
-
-    //             $('.options_wrapper').append(button_one,button_two);
-    //         } else  {
-    //             return;
-    //         }
-    //     } else if(properties[position].owned === true){
-    //         this.payRent();
-    //     }
-    // }
-
     handleSpaces(player, position){
         var playerName = player;
         console.log(playerName);
 
         if(position === 4){
-                $('.options_modal').removeClass('hidden');
-                $('.option').text('Gollum has found you! Pay $200!');
-                var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
-                    $('.options_modal').addClass('hidden');
-                    $('.ok_button').remove();
-                });
-                $('.options_wrapper').append(ok_button);
-                newGame.allPlayers[playerName].removeMoney(200);
-            } else if(position===30){
-                $(playerName).appendTo('.30.num.big.go_to_jail');
-                document.getElementById("not_pass").play();
-                setTimeout(this.goToJail, 5000);
-                newGame.allPlayers[playerName].inJail = true;
-            } else if(position === 38){
-                $('.options_modal').removeClass('hidden');
-                $('.option').text('You have entered Shalob\'s Lair. Pay $100!');
-                var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
-                    $('.options_modal').addClass('hidden');
-                    $('.ok_button').remove();
-                });
-                $('.options_wrapper').append(ok_button);
-                newGame.allPlayers[playerName].removeMoney(100);
-            }
-
-            if(properties[position].owned === false){
-                if(properties[position].cost < newGame.allPlayers[playerName].balance){
-                    $('.options_modal').removeClass('hidden');
-                    $('.option').text('Would you like to buy ' + properties[position].name + ' for $' + properties[position].cost + '?');
-                    var button_one=$('<button>').addClass(`option_button_1 buy_prop ${this.playerCharacter}`).text('Yes').on('click',this.buyProperty);
-                    var button_two=$('<button>').addClass('option_button_2').text('No').click(function(){
-                        $('.options_modal').addClass('hidden');
-                        $('.option_button_1, .option_button_2').remove();
-                    });
-                    $('.options_wrapper').append(button_one,button_two);
-                } else  {
-                    $('.options_modal').removeClass('hidden');
-                    $('.option').text(`You don\'t have enough money to buy ${properties[position].name}.`);
-                    var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
-                        $('.options_modal').addClass('hidden');
-                        $('.ok_button').remove()
-                    });
-                    $('.options_wrapper').append(ok_button);;
-                }
-            } else if(properties[position].owned === true){
-                this.payRent();
-            }
+            $('.options_modal').removeClass('hidden');
+            $('.option').text('Gollum has found you! Pay $200!');
+            var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
+                $('.options_modal').addClass('hidden');
+                $('.ok_button').remove();
+            });
+            $('.options_wrapper').append(ok_button);
+            newGame.allPlayers[playerName].removeMoney(200);
+        } else if(position===30){
+            $(playerName).appendTo('.30.num.big.go_to_jail');
+            document.getElementById("not_pass").play();
+            setTimeout(this.goToJail, 5000);
+            newGame.allPlayers[playerName].inJail = true;
+        } else if(position === 38){
+            $('.options_modal').removeClass('hidden');
+            $('.option').text('You have entered Shalob\'s Lair. Pay $100!');
+            var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
+                $('.options_modal').addClass('hidden');
+                $('.ok_button').remove();
+            });
+            $('.options_wrapper').append(ok_button);
+            newGame.allPlayers[playerName].removeMoney(100);
         }
 
-
+        if(properties[position].owned === false){
+            if(properties[position].cost < newGame.allPlayers[playerName].balance){
+                $('.options_modal').removeClass('hidden');
+                $('.option').text('Would you like to buy ' + properties[position].name + ' for $' + properties[position].cost + '?');
+                var button_one=$('<button>').addClass(`option_button_1 buy_prop ${this.playerCharacter}`).text('Yes').on('click',this.buyProperty);
+                var button_two=$('<button>').addClass('option_button_2').text('No').click(function(){
+                    $('.options_modal').addClass('hidden');
+                    $('.option_button_1, .option_button_2').remove();
+                });
+                $('.options_wrapper').append(button_one,button_two);
+            } else  {
+                $('.options_modal').removeClass('hidden');
+                $('.option').text(`You don\'t have enough money to buy ${properties[position].name}.`);
+                var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
+                    $('.options_modal').addClass('hidden');
+                    $('.ok_button').remove()
+                });
+                $('.options_wrapper').append(ok_button);;
+            }
+        } else if(properties[position].owned === true){
+            this.payRent();
+        }
+    }
 
 
     goToJail(){
@@ -257,11 +221,7 @@ class Player{
             $('.players').css('height', '50%');
             $('.player_name').css('height', '18%');
             $('.player_info_container').css({'height': '85%', 'opacity': '1'});
-            $('.row1').css('opacity', '1');
-            $('.row2').css('opacity', '1');
-            $('.roll_dice').css('opacity', '1');;
-            $('.end_turn').css('opacity', '1');
-        } 
+        }
     }
 
     payRent(){
@@ -271,9 +231,11 @@ class Player{
         var owner=properties[currentPosition].owner;
         if(properties[currentPosition].owned ===true){
             if(current_player === owner){
-                return
+                $('.option').text('You already own this property.');
+                // return
             } else {
                 if(properties[currentPosition].rent<newGame.allPlayers[current_player].balance){
+                    $('.option').text(`This property is owned by ${owner}. Pay them ${properties[currentPosition].rent}!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].rent;
                 }else{
@@ -287,10 +249,12 @@ class Player{
         if(this.balance===0){
             this.playerLoses();
         }
+
         $('.options_modal').removeClass('hidden');
-        $('.option').text('This property is owned by ' + properties[currentPosition].owner + '. Pay owner $' + properties[currentPosition].rent + '!');
+        // $('.option').text('This property is owned by ' + properties[currentPosition].owner + '. Pay owner $' + properties[currentPosition].rent + '!');
         var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
             $('.options_modal').addClass('hidden');
+            $('.option_button_1').remove();
         });
         $('.options_wrapper').append(ok_button);
     }
