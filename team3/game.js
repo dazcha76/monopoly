@@ -11,9 +11,6 @@ class Game {
     this.playerName = character;
     this.playerCharacter = character;
     this.allPlayers[this.playerName] = new Player(this.playerName, this.playerCharacter, this.initialBalance, this.currentPlayer);
-    if(playerArray[0]){
-      newGame.allPlayers[playerArray[0]].currentTurn = true;
-    }
   }
 
   displayPlayer(){

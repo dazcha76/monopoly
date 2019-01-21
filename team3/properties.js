@@ -18,7 +18,7 @@ var properties = [
    mortgage:30,
    houseCost:50,
    hotelCost:50
-},
+}, 
 
 {status: 'not for sale', name:'Smaug\'s Treasure'},
 
@@ -53,7 +53,7 @@ var properties = [
    cost:200,
    rent:25,
    railroadrent2:50,
-   railroadrent3:100,
+   monopolyRent:100,
    railroadrent4:200,
    mortgage:100
    },
@@ -190,7 +190,7 @@ var properties = [
    cost:200,
    rent:25,
    railroadrent2:50,
-   railroadrent3:100,
+   monopolyRent:100,
    railroadrent4:200,
    mortgage:100},
 
@@ -317,7 +317,7 @@ var properties = [
        color: 'black',
        rent:25,
        railroadrent2:50,
-       railroadrent3:100,
+       monopolyRent:100,
        railroadrent4:200,
        mortgage:100
         },
@@ -458,7 +458,7 @@ var properties = [
        cost:200,
        rent:25,
        railroadrent2:50,
-       railroadrent3:100,
+       monopolyRent:100,
        reailroadrent4:200
       },
 
