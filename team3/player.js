@@ -103,7 +103,6 @@ class Player{
 
     handleSpaces(player, position){
         var playerName = player;
-        console.log(playerName);
 
         if(position === 4){
             $('.options_modal').removeClass('hidden');
@@ -218,7 +217,6 @@ class Player{
 
         $('.player1').removeClass('player1');
         var temp = playerArray.shift();
-        console.log(temp)
         playerArray.push(temp);
         var nextPlayer = playerArray[0];
         $(`#${nextPlayer}`).addClass('player1');
@@ -246,30 +244,51 @@ class Player{
             if(current_player === owner){
                 $('.option').text(`You already own ${properties[currentPosition].name}.`);
             } else { 
-                if(newGame.allPlayers[owner].multipliers[currentColor].length === 1 && properties[currentPosition].rent < newGame.allPlayers[current_player].balance){
-                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them ${properties[currentPosition].rent} *1!`);
+                if(currentColor === 'white'){
+                    var dice_one = Math.floor((Math.random() * 6) + 1);
+                    var dice_two = Math.floor((Math.random() * 6) + 1);
+                    var dice_roll = dice_one + dice_two;
+                    var times4 = dice_roll * 4;
+                    var times10 = dice_roll * 10;                    
+
+                    if(newGame.allPlayers[owner].multipliers.white.length === 1){
+                        if(times4 < newGame.allPlayers[current_player].balance){
+                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${times4}!`);
+                            newGame.allPlayers[owner].balance+= properties[currentPosition].times4;
+                            newGame.allPlayers[current_player].balance-=properties[currentPosition].times4;
+                        }
+                    } else if(newGame.allPlayers[owner].multipliers.white.length === 2){
+                        if(times10 < newGame.allPlayers[current_player].balance){
+                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${times10}!`);
+                            newGame.allPlayers[owner].balance+= properties[currentPosition].times10;
+                            newGame.allPlayers[current_player].balance-=properties[currentPosition].times10;
+                        }
+                    }
+
+                } else if(newGame.allPlayers[owner].multipliers[currentColor].length === 1 && properties[currentPosition].rent < newGame.allPlayers[current_player].balance){
+                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].rent} *1!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].rent;
                 } else if(newGame.allPlayers[owner].multipliers[currentColor].length === 2){
                     if(currentColor === 'black'){
                         if(properties[currentPosition].railroadrent2 < newGame.allPlayers[current_player].balance){
-                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them ${properties[currentPosition].railroadrent2} *2!`);
+                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].railroadrent2} *2!`);
                             newGame.allPlayers[owner].balance+= properties[currentPosition].railroadrent2;
                             newGame.allPlayers[current_player].balance-=properties[currentPosition].railroadrent2;
                         }
                     } else if(currentColor === 'brown' || currentColor === 'blue'){
                         if(properties[currentPosition].monopolyRent < newGame.allPlayers[current_player].balance){
-                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them ${properties[currentPosition].monopolyRent} *2!`);
+                            $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].monopolyRent} *2!`);
                             newGame.allPlayers[owner].balance+= properties[currentPosition].monopolyRent;
                             newGame.allPlayers[current_player].balance-=properties[currentPosition].monopolyRent;
                         }
                     }
                 } else if(newGame.allPlayers[owner].multipliers[currentColor].length === 3 && properties[currentPosition].monopolyRent < newGame.allPlayers[current_player].balance){
-                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them ${properties[currentPosition].monopolyRent} *3!`);
+                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].monopolyRent} *3!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].monopolyRent;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].monopolyRent;
                 } else if(newGame.allPlayers[owner].multipliers.black.length === 4 && properties[currentPosition].railroadrent4 < newGame.allPlayers[current_player].balance){
-                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them ${properties[currentPosition].railroadrent4} *4!`);
+                    $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].railroadrent4} *4!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].railroadrent4;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].railroadrent4;
                 } else {
@@ -285,9 +304,9 @@ class Player{
         }
 
         $('.options_modal').removeClass('hidden');
-        var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
+        var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
             $('.options_modal').addClass('hidden');
-            $('.option_button_1').remove();
+            $('.ok_button').remove();
         });
         $('.options_wrapper').append(ok_button);
     }
@@ -300,7 +319,7 @@ class Player{
         var player = $('.player1').attr('id');
         $('.options_modal').removeClass('hidden');
         $('.option').text( player +' you lost!');
-        var ok_button = $('<button>').addClass('option_button_1').text('OK').click(function(){
+        var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
         $('.options_modal').addClass('hidden')});
         $('.options_wrapper').append(ok_button);
     }

@@ -23,7 +23,6 @@ function selectCharacter(){
   }
   $(this).css('opacity', '0.3').off('click').addClass('picked');
   $('h3').removeClass('animated bounceInLeft');
-  console.log("character")
 }
 
 function nextPlayer(){
@@ -34,12 +33,10 @@ function nextPlayer(){
   $('h3').addClass('animated bounceInLeft');
   $('.next_player').css('opacity', '0.3').off('click', nextPlayer).removeClass('clickable');
   $('.start_game').css('opacity', '1').on('click', startGame);
-  console.log("next player");
 }
 
 function startGame(){
   newGame.createPlayer();
   newGame.displayPlayer();
   $('.welcome_page').addClass('hidden');
-  console.log("start game");
 }
