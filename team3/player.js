@@ -11,21 +11,12 @@ class Player{
         this.createPlayerCard = this.createPlayerCard.bind(this);
         this.goToJail = this.goToJail.bind(this);
         this.buyProperty = this.buyProperty.bind(this);
-        this.endTurn = this.endTurn.bind(this);
-        this.hidePlayerCard = this.hidePlayerCard.bind(this);
     }
 
     createPlayerCard(){
-        var player_container = $('<div>')
-                                .addClass(`players ${this.playerName}`)
-                                .css('height', '8%');
-        var player_name = $('<div>')
-                            .addClass(`player_name ${this.playerName}`)
-                            .css('height', '100%')
-                            .text(this.playerName);
-        var info_container = $('<div>')
-                            .addClass('player_info_container')
-                            .css({'height': '0', 'opacity': '0'});
+        var player_container = $('<div>').addClass(`players ${this.playerName}`).css('height', '8%');
+        var player_name = $('<div>').addClass(`player_name ${this.playerName}`).css('height', '100%').text(this.playerName);
+        var info_container = $('<div>').addClass(`player_info_container ${this.playerName}`).css({'height': '0', 'opacity': '0'});
         var player_balance = $('<div>').addClass(`player_balance ${this.playerName}`);
         var player_properties = $('<div>').addClass('player_properties');
         var row1 =  $('<div>').addClass('row1');
@@ -67,7 +58,7 @@ class Player{
             $(`#${playerArray[0]}`).addClass('player1');
         } 
 
-        this.hidePlayerCard(this.playerName);
+        this.showPlayerOne(this.playerName);
     }
 
     move_player(){        
@@ -80,7 +71,6 @@ class Player{
             var currentPosition = newGame.allPlayers[player].player_position;
             var tempCurrentPosition = currentPosition;
             currentPosition += dice_roll;
-
 
             if (currentPosition > 39) {
                 var positionDifference = 39 - tempCurrentPosition;
@@ -126,7 +116,6 @@ class Player{
                 });
 
                 $('.options_wrapper').append(button_one,button_two);
-
             } else  {
                 return;
             }
@@ -165,7 +154,6 @@ class Player{
     }
    
     buyProperty(){
-
         var buttonClass = $('.buy_prop').attr('class');
         var containerClass = $('.colorContainer').attr('class').substring(15);
         var player = buttonClass.substring(25);
@@ -190,20 +178,33 @@ class Player{
     }
     
     endTurn(){
+        var currentPlayer = $('.player1').attr('id') ;
+
+        $(`.players.${currentPlayer}`).css({'height': '8%'});
+        $(`.player_name.${currentPlayer}`).css({'height': '100%'});
+        $(`.player_info_container.${currentPlayer}`).css({'height': '0', 'opacity': '0'});
+
         $('.player1').removeClass('player1');
         var temp = playerArray.shift();
+        console.log(temp)
         playerArray.push(temp);
         var nextPlayer = playerArray[0];
         $(`#${nextPlayer}`).addClass('player1');
 
-        this.hidePlayerCard(nextPlayer);
+        $(`.players.${nextPlayer}`).css({'height': '50%'});
+        $(`.player_name.${nextPlayer}`).css({'height': '18%'});
+        $(`.player_info_container.${nextPlayer}`).css({'height': '85%', 'opacity': '1'});
     }
 
-    hidePlayerCard(name){
+    showPlayerOne(name){
         if( $('.player1').attr('id') === name){
             $('.players').css('height', '50%');
             $('.player_name').css('height', '18%');
             $('.player_info_container').css({'height': '85%', 'opacity': '1'});
+            $('.row1').css('opacity', '1');
+            $('.row2').css('opacity', '1');
+            $('.roll_dice').css('opacity', '1');;
+            $('.end_turn').css('opacity', '1');
         } 
     }
 

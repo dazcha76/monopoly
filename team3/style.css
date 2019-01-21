@@ -624,6 +624,10 @@ h2 {
     color: #ecdfc4;
     font-size: 150%;
 }
+/*
+.player_info_container {
+    transition: 1s ease;
+}*/
 
 .player_balance {
     height:12%;
