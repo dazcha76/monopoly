@@ -150,7 +150,7 @@ class Player{
                     $('.options_modal').addClass('hidden');
                     $('.ok_button').remove()
                 });
-                $('.options_wrapper').append(ok_button);;
+                $('.options_wrapper').append(ok_button);
             }
         } else if(properties[position].owned === true){
             this.payRent();
@@ -202,6 +202,7 @@ class Player{
         if(withdraw>this.balance){
             withdraw=this.balance;
             this.balance=0;
+            this.playerLoses();
             return;
         }
         if(this.balance===0){
@@ -278,8 +279,9 @@ class Player{
                     var dice_one = Math.floor((Math.random() * 6) + 1);
                     var dice_two = Math.floor((Math.random() * 6) + 1);
                     var dice_roll = dice_one + dice_two;
+
                     var times4 = dice_roll * 4;
-                    var times10 = dice_roll * 10;                    
+                    var times10 = dice_roll * 10;
 
                     if(newGame.allPlayers[owner].multipliers.white.length === 1){
                         if(times4 < newGame.allPlayers[current_player].balance){
@@ -321,9 +323,10 @@ class Player{
                     $('.option').text(`${properties[currentPosition].name} is owned by ${owner}. Pay them $${properties[currentPosition].railroadrent4}!`);
                     newGame.allPlayers[owner].balance+= properties[currentPosition].railroadrent4;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].railroadrent4;
-                } else {
+                } else if (properties[currentPosition].rent>newGame.allPlayers[current_player].balance) {
                     newGame.allPlayers[owner].balance+= newGame.allPlayers[current_player].balance;
                     newGame.allPlayers[current_player].balance=0;
+                    this.playerLoses();
                 }
             }
         }
@@ -346,12 +349,14 @@ class Player{
     checkProperty(){}
 
     playerLoses(){
+
         var player = $('.player1').attr('id');
         $('.options_modal').removeClass('hidden');
         $('.option').text( player +' you lost!');
         var ok_button = $('<button>').addClass('ok_button').text('OK').click(function(){
         $('.options_modal').addClass('hidden')});
         $('.options_wrapper').append(ok_button);
+        $(ok_button).remove();
     }
 
     showDeed(){
