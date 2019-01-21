@@ -8,14 +8,25 @@ class Player{
         this.player_position=0;
         this.createPlayerCard();
 
+        this.createPlayerCard = this.createPlayerCard.bind(this);
         this.goToJail = this.goToJail.bind(this);
         this.buyProperty = this.buyProperty.bind(this);
+        this.endTurn = this.endTurn.bind(this);
+        this.hidePlayerCard = this.hidePlayerCard.bind(this);
     }
 
     createPlayerCard(){
-        var player_container = $('<div>').addClass(`players ${this.playerName}`);
-        var player_name = $('<div>').addClass('player_name ' +this.playerName).text(this.playerName);
-        var player_balance = $('<div>').addClass('player_balance ' + this.playerName);
+        var player_container = $('<div>')
+                                .addClass(`players ${this.playerName}`)
+                                .css('height', '8%');
+        var player_name = $('<div>')
+                            .addClass(`player_name ${this.playerName}`)
+                            .css('height', '100%')
+                            .text(this.playerName);
+        var info_container = $('<div>')
+                            .addClass('player_info_container')
+                            .css({'height': '0', 'opacity': '0'});
+        var player_balance = $('<div>').addClass(`player_balance ${this.playerName}`);
         var player_properties = $('<div>').addClass('player_properties');
         var row1 =  $('<div>').addClass('row1');
         var row2 =  $('<div>').addClass('row2');
@@ -34,29 +45,29 @@ class Player{
         row2.append(red, yellow, green, blue, white);
         player_properties.append(row1, row2);
 
-        if(!this.currentTurn){
-            var buttonContainer = $('<div>').addClass('buttons');
-        }else{
-            var buttonContainer = $('<div>').addClass('buttons').hide();
-        }
-
+        var buttonContainer = $('<div>').addClass('buttons');
         var roll_button = $('<button>')
                             .text("Roll")
                             .addClass(`roll_dice ${this.playerCharacter}`)
                             .click(this.move_player);
         var end_button = $('<button>').text("End").addClass('end_turn').click(this.endTurn);
         buttonContainer.append(roll_button, end_button);
+        var player_chip = $('<div>')
+                            .addClass('player_chip')
+                            .attr('id', this.playerName)
+                            .css('background-image', `url("images/${this.playerCharacter.toLowerCase()}.jpg")`);
 
-        var player_chip = $('<div>').addClass('player_chip').attr('id', this.playerName).css('background-image', `url("images/${this.playerCharacter.toLowerCase()}.jpg")`);
-
-        if(playerArray.length>0){
-            $(`#${playerArray[0]}`).addClass('player1');
-        }
-
-        player_container.append(player_name, player_balance, player_properties, buttonContainer);
+        info_container.append(player_balance, player_properties, buttonContainer)
+        player_container.append(player_name, info_container);
 
         $('.players_container').append(player_container);
         $('.0.num').append(player_chip);
+
+        if(playerArray.length === 1){
+            $(`#${playerArray[0]}`).addClass('player1');
+        } 
+
+        this.hidePlayerCard(this.playerName);
     }
 
     move_player(){        
@@ -184,6 +195,16 @@ class Player{
         playerArray.push(temp);
         var nextPlayer = playerArray[0];
         $(`#${nextPlayer}`).addClass('player1');
+
+        this.hidePlayerCard(nextPlayer);
+    }
+
+    hidePlayerCard(name){
+        if( $('.player1').attr('id') === name){
+            $('.players').css('height', '50%');
+            $('.player_name').css('height', '18%');
+            $('.player_info_container').css({'height': '85%', 'opacity': '1'});
+        } 
     }
 
     payRent(){
@@ -259,6 +280,6 @@ class Player{
         $('.deed_modal').addClass('hidden');
         var propertyIndex = parseInt($(this).attr('class'));
         var currentProperty = properties[propertyIndex];
-        $('.deed_bar').removeClass(currentProperty.color)
+        $('.deed_bar').removeClass(currentProperty.color);
     }
 }

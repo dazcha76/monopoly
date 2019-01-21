@@ -265,7 +265,8 @@ h2 {
     width:22%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    padding-top: 2%;
 }
 
 .player_chip {
@@ -606,8 +607,7 @@ h2 {
 
 /*-------------- players--------------*/
 
-.players.Frodo,.players.Gandalf,.players.Aragorn,.players.Legolas,.players.Arwen {
-    height: 45%;
+.players {
     width: 100%;
     text-align: center;
     background-color: #e3cfa7;
@@ -615,24 +615,24 @@ h2 {
     font-family: 'LOTR';
     font-size: 150%;
     color: #d0af6b;
+    margin-bottom: 5%;
 }
 
-.player_name.Frodo,.player_name.Gandalf ,.player_name.Aragorn ,.player_name.Legolas ,.player_name.Arwen{
-    height:15%;
+.player_name {
     width:100%;
     background-color: #d0af6b;
     color: #ecdfc4;
     font-size: 150%;
 }
 
-.player_balance.Frodo , .player_balance.Gandalf , .player_balance.Aragorn , .player_balance.Legolas ,.player_balance.Arwen {
+.player_balance {
     height:12%;
     width:100%;
     font-size: 120%;
 }
 
 .player_properties {
-    height:52%;
+    height:62%;
     width:100%;
     display: flex;
     flex-direction: column;
@@ -701,10 +701,6 @@ h2 {
 .roll_dice {
     margin-right: 5%;
 }
-
-
-
-
 
 /*-------------- SPECIAL CLASSES --------------*/
 
