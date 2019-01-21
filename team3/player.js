@@ -142,6 +142,7 @@ class Player{
         if(withdraw>this.balance){
             withdraw=this.balance;
             this.balance=0;
+            this.playerLoses();
             return;
         }
         if(this.balance===0){
@@ -198,9 +199,10 @@ class Player{
                 if(properties[currentPosition].rent<newGame.allPlayers[current_player].balance){
                     newGame.allPlayers[owner].balance+= properties[currentPosition].rent;
                     newGame.allPlayers[current_player].balance-=properties[currentPosition].rent;
-                }else{
+                } else if (properties[currentPosition].rent>newGame.allPlayers[current_player].balance) {
                     newGame.allPlayers[owner].balance+= newGame.allPlayers[current_player].balance;
                     newGame.allPlayers[current_player].balance=0;
+                    this.playerLoses();
                 }
             }
         }
